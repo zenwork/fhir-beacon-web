@@ -1,0 +1,7 @@
+<header>
+        <h5>FHIR Beacon <a href="/">Home</a>&nbsp;|&nbsp;
+            {{for child of nav.menu().children}}
+                <a href="{{child.data.url}}">{{child.slug}}</a>&nbsp;|&nbsp;
+            {{/for}}
+        </h5>
+</header>
