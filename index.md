@@ -1,5 +1,5 @@
 ---
-layout: layout.vto
+layout: base.vto
 ---
 
 # Welcome to FHIR Beacon

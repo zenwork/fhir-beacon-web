@@ -1,0 +1,23 @@
+
+wa-page {
+  --header-height: 57.599998474121094px;
+  --subheader-height: 57.599998474121094px;
+  --banner-height: 57.599998474121094px;
+  --footer-height: 57.599998474121094px;
+}
+
+wa-page > header {
+  height: 5rem;
+}
+
+.slot-navigation {
+  width: 20rem;
+}
+
+.content {
+  height: 50rem;
+}
+
+code-bubble::part(code-bubble-base) {
+  height: 100%;
+}

@@ -1,0 +1,6 @@
+<ol>
+    <li><a href="/">Home</a>&nbsp;</li>
+    {{for child of nav.menu().children.filter(child => child.slug !== 'static')}}
+        <li><a href="{{child.data.url}}">{{child.slug}}</a></li>
+    {{/for}}
+</ol>

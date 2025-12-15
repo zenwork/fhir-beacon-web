@@ -1,0 +1,17 @@
+---
+layout: 'base.vto'
+---
+
+{{ layout "../_components/viewer.vto" {lang:"js"} }}
+console.log("hi")
+{{ /layout }}
+
+{{ layout "../_components/viewer.vto" {lang:"html"} }}
+<div>hi</div>
+{{ /layout }}
+
+{{ layout "../_components/viewer.vto" {lang:"css"} }}
+div {
+    background: grey;
+}
+{{ /layout }}

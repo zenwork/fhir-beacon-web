@@ -1,5 +1,6 @@
 {
     "imports": {
+        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.0.0",
         "lume/": "https://deno.land/x/lume@v3.1.2/",
         "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
         "lit": "npm:lit@3.3.1"
@@ -31,5 +32,6 @@
                 "no-import-prefix"
             ]
         }
-    }
+    },
+    "nodeModulesDir": "auto"
 }
