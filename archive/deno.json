@@ -1,0 +1,37 @@
+{
+    "imports": {
+        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.0.0",
+        "lume/": "https://deno.land/x/lume@v3.1.2/",
+        "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
+        "lit": "npm:lit@3.3.1"
+    },
+    "tasks": {
+        "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
+        "build": "deno task lume",
+        "serve": "deno task lume -s"
+    },
+    "compilerOptions": {
+        "types": [
+            "lume/types.ts"
+        ],
+        "jsx": "react-jsx",
+        "jsxImportSource": "lume",
+        "lib": ["dom", "dom.iterable", "dom.asynciterable", "esnext"],
+        "experimentalDecorators": true
+    },
+    "unstable": [
+        "temporal",
+        "fmt-component"
+    ],
+    "lint": {
+        "plugins": [
+            "https://deno.land/x/lume@v3.1.2/lint.ts"
+        ],
+        "rules": {
+            "exclude": [
+                "no-import-prefix"
+            ]
+        }
+    },
+    "nodeModulesDir": "auto"
+}

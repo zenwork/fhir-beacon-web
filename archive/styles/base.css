@@ -17,7 +17,3 @@ wa-page > header {
 .content {
   height: 50rem;
 }
-
-code-bubble::part(code-bubble-base) {
-  height: 100%;
-}

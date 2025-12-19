@@ -1,23 +1,23 @@
 {
     "imports": {
-        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.0.0",
-        "lume/": "https://deno.land/x/lume@v3.1.2/",
-        "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
-        "lit": "npm:lit@3.3.1"
+        "lume/": "https://deno.land/x/lume@v3.0.6/",
+        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.12.5/",
+        "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts"
     },
+    "lock": false,
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
         "build": "deno task lume",
-        "serve": "deno task lume -s"
+        "serve": "deno task lume -s",
+        "cms": "deno task lume cms",
+        "update-deps": "deno run -A 'https://deno.land/x/nudd@v0.2.10/cli.ts' update deno.json plugins.ts"
     },
     "compilerOptions": {
         "types": [
             "lume/types.ts"
         ],
         "jsx": "react-jsx",
-        "jsxImportSource": "lume",
-        "lib": ["dom", "dom.iterable", "dom.asynciterable", "esnext"],
-        "experimentalDecorators": true
+        "jsxImportSource": "lume"
     },
     "unstable": [
         "temporal",
@@ -25,13 +25,7 @@
     ],
     "lint": {
         "plugins": [
-            "https://deno.land/x/lume@v3.1.2/lint.ts"
-        ],
-        "rules": {
-            "exclude": [
-                "no-import-prefix"
-            ]
-        }
-    },
-    "nodeModulesDir": "auto"
+            "https://deno.land/x/lume@v3.0.5/lint.ts"
+        ]
+    }
 }

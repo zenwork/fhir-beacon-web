@@ -11,7 +11,7 @@
     const darkTheme = "wa-dark"
     const documentElement = document.documentElement
     documentElement.classList.add(window.localStorage.getItem("theme") || lightTheme)
-    document.addEventListener("change", (e) => {
+    document.addEventListener("change", (_) => {
         let current = window.localStorage.getItem("theme")
         setTheme(current === darkTheme ? lightTheme : darkTheme)
     });
