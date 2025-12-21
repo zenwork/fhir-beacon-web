@@ -1,8 +1,8 @@
 <nav>
-  <ul class="breadcrumb">
+  <wa-breadcrumb>
     {{ for item of nav.breadcrumb(url, `lang=${lang} hide_menu!=true`) }}
 {{ if item.data.url }}
-        <li class="breadcrumb-item">
+        <wa-breadcrumb-item >
           {{ if item.data.url !== url }}
             <a href="{{ item.data.url }}">{{
               item.data.title || item.data.basename
@@ -10,12 +10,12 @@
           {{ else }}
 {{ item.data.title || item.data.basename }}
 {{ /if }}
-        </li>
+        </wa-breadcrumb-item>
       {{ else }}
-        <li class="breadcrumb-item">
+        <wa-breadcrumb-item >
           <strong>{{ item.data.basename }}</strong>
-        </li>
+        </wa-breadcrumb-item>
       {{ /if }}
 {{ /for }}
-  </ul>
+  </wa-breadcrumb>
 </nav>

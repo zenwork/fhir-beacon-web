@@ -1,8 +1,8 @@
 ---
-id: index
+id: getting-started
 ---
 
-# Simple Wiki
+# Getting Started
 
 Create Markdown files to add pages.
 

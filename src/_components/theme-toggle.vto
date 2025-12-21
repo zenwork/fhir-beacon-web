@@ -1,0 +1,25 @@
+<script type="module">
+    const lightTheme = "wa-light"
+    const darkTheme = "wa-dark"
+    const documentElement = document.documentElement
+
+    function setTheme(next) {
+        const html = document.documentElement
+        const current = window.localStorage.getItem("theme")
+        if (current === next) return
+        window.localStorage.setItem("theme", next)
+        html.classList.remove(current)
+        html.classList.add(next)
+        if(current === darkTheme)html.setAttribute("checked","")
+    }
+
+    documentElement.classList.add(window.localStorage.getItem("theme") || lightTheme)
+
+    let toggle = document.querySelector(".theme-toggle")
+    if(window.localStorage.getItem("theme") === darkTheme){  toggle.setAttribute("checked","") }
+    toggle.addEventListener("change", (_) => {
+        let current = window.localStorage.getItem("theme")
+        setTheme(current === darkTheme ? lightTheme : darkTheme)
+    });
+</script>
+<wa-switch class="theme-toggle" >light/dark</wa-switch>
