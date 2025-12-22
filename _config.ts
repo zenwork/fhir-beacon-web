@@ -6,9 +6,7 @@ import theme    from './mod.ts'
 
 
 
-const site = lume({
-                    src: './src'
-                  })
+const site = lume({ src: './src' })
 
 site.use(theme())
 site.use(ogimages())

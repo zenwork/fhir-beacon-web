@@ -1,0 +1,11 @@
+{{ if it.edit != false && it.repo }}
+    <footer class="slot-content" slot="main-footer">
+        <time timestamp='{{ date |> date("DATETIME") }}'>Last updated: {{ date |> date("HUMAN_DATETIME") }}</time>
+        {{ if it.repo }}
+           &nbsp;—&nbsp;
+            <a
+              href="{{ repo.url }}/edit/main{{ repo.path }}{{ page.src.path }}{{ page.src.ext }}"
+            >Edit this page</a>
+        {{ /if }}
+    </footer>
+{{ /if }}

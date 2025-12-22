@@ -1,4 +1,4 @@
-    <html lang='{{ it.lang || "en" }}'>
+    <html lang='{{ it.lang || "en" }}' class="wa-cloak">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@
       media="(prefers-color-scheme: dark)"
     >
 
+    <script src="https://kit.fontawesome.com/d8e075196b.js" crossorigin="anonymous"></script>
     <script src="https://kit.webawesome.com/0dd99a4d5b9c43e5.js" crossorigin="anonymous"></script>
     <script type="module" src="/menu.js"></script>
     <script type="module" src="/copy-code-button.js"></script>
@@ -25,165 +26,17 @@
 
   <body>
     <wa-page view="mobile" navigation-placement="start">
+        <!-- banner          -->
+        {{ include "./header.vto" }}
+        <!-- subheader       -->
+        {{ include "./navigation.vto" }}
 
-        <!-- site header -->
-        <header class="slot-content" slot="header">
-            <h1>FHIR Beacon</h1>
-            <div class="toolbar">
+        {{ include "./article/header.vto" }}
+        {{ include "./article/article.vto" }}
+        {{ include "./article/footer.vto" }}
+        {{ include "./article/menu.vto" }}
 
-                <div id="search" class="search"></div>
-            </div>
-            {{ include "../../_components/theme-toggle.vto" }}
-        </header>
-
-        <!-- site menu -->
-        <div class="slot-navigation" slot="navigation">
-             {{ include "templates/menu.vto" }}
-        </div>
-
-        <!-- main header -->
-        <header class="slot-content" slot="main-header">
-            {{ include "templates/breadcrumb.vto" }}
-        </header>
-
-        <!-- main -->
-        <main class="main">
-            <div class="body" {{ if it.content && it.pagefind }}data-pagefind-body{{ /if }} >
-                {{ if !it.title }}
-                    <h1>{{ it.basename }}</h1>
-                {{ /if }}
-                {{ if content }}
-                    <div class="content">
-                        {{ content }}
-                    </div>
-                {{ else }}
-                {{ if it.title }}
-                  <h1>{{ it.title }}</h1>
-                {{ /if }}
-                <p class="emptyState">The page <code>{{ url }}</code> is empty</p>
-                {{ /if }}
-            </div>
-
-            {{ set children = nav.menu( url, `lang=${lang} hide_menu!=true`, "order=asc title=asc-locale basename=asc-locale", )?.children }}
-
-            {{ if children }}
-                <nav class="body-children">
-            {{ for child of children }}
-                {{ if child.data.url }}
-                    <a href="{{ child.data.url }}">{{
-                        child.data.title || child.data.basename
-                    }}</a>
-                {{ /if }}
-            {{ /for }}
-                </nav>
-            {{ /if }}
-
-            {{ if it.footnotes?.length }}
-                <aside role="note" class="footnotes">
-                <dl>
-                  {{ for note of footnotes }}
-                    <div id="{{ note.id }}" class="footnote">
-                      <dt><a href="#{{ note.refId }}">{{ note.label }}</a></dt>
-                      <dd>{{ note.content }}</dd>
-                    </div>
-                  {{ /for }}
-                </dl>
-                </aside>
-            {{ /if }}
-        </main>
-
-        <!-- main footer -->
-        {{ if it.edit != false && it.repo }}
-            <footer class="slot-content" slot="main-footer">
-                <time timestamp='{{ date |> date("DATETIME") }}'>Last updated: {{ date |> date("HUMAN_DATETIME") }}</time>
-                {{ if it.repo }}
-                   &nbsp;—&nbsp;
-                    <a
-                      href="{{ repo.url }}/edit/main{{ repo.path }}{{ page.src.path }}{{ page.src.ext }}"
-                    >Edit this page</a>
-                {{ /if }}
-            </footer>
-        {{ /if }}
-
-        <!-- page menu -->
-        {{ if toc?.length }}
-            <div class="slot-content" slot="aside">
-            <nav class="toc">
-              <h2>On this page</h2>
-              <ol>
-                {{ for item of toc }}
-                  <li>
-                    <a href="#{{ item.slug }}">{{ item.text }}</a>
-
-                    {{ if item.children.length }}
-                      <ul>
-                        {{ for child of item.children }}
-                          <li>
-                            <a href="#{{ child.slug }}">{{ child.text }}</a>
-                          </li>
-                        {{ /for }}
-                      </ul>
-                    {{ /if }}
-                  </li>
-                {{ /for }}
-              </ol>
-            </nav>
-        </div>
-        {{ /if }}
-
-        <!-- site footer -->
-        <footer class="slot-content" slot="footer">
-            <nav class="body-nav pagination">
-        <ul>
-        {{
-        set previousPage = nav.previousPage(
-        url,
-        `lang=${lang} hide_menu!=true`,
-        "order=asc title=asc-locale basename=asc-locale",
-        )
-        }}
-
-        {{ if previousPage }}
-        <li class="pagination-prev">
-        <a href="{{ previousPage.url }}" rel="prev">
-        ← Previous
-        <strong>{{
-          previousPage.title ||
-            previousPage.basename
-        }}</strong>
-        </a>
-        </li>
-        {{ /if }}
-
-        {{
-        set nextPage = nav.nextPage(
-        url,
-        `lang=${lang} hide_menu!=true`,
-        "order=asc title=asc-locale basename=asc-locale",
-        )
-        }}
-
-        {{ if nextPage }}
-        <li class="pagination-next">
-        <a href="{{ nextPage.url }}" rel="next">
-        Next →
-        <strong>{{ nextPage.title || nextPage.basename }}</strong>
-        </a>
-        </li>
-        {{ /if }}
-        </ul>
-
-        {{
-        set children = nav.menu(
-        url,
-        `lang=${lang} hide_menu!=true`,
-        "order=asc title=asc-locale basename=asc-locale",
-        )?.children
-        }}
-        </nav>
-            {{ include "../../_components/footer.vto" }}
-        </footer>
-
+        {{ include "./footer.vto" }}
     </wa-page>
   </body>
 </html>

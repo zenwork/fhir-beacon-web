@@ -13,18 +13,14 @@ export default function (options?: Options) {
 
     // Add remote files
     const files = [
-      '_includes/css/menu.css',
-      '_includes/css/updates.css',
-      '_includes/css/copy-code-button.css',
-      '_includes/styles.css',
       '_includes/templates/breadcrumb.vto',
       '_includes/layout.vto',
       '_includes/templates/menu_item.vto',
       '_includes/templates/menu.vto',
+      'favicon.svg',
       'menu.js',
       'menu.page.ts',
       'copy-code-button.js',
-      'styles.css'
     ]
 
     for (const file of files) {

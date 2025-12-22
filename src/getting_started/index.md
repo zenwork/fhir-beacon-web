@@ -6,6 +6,6 @@ id: getting-started
 
 Create Markdown files to add pages.
 
-## foo
+## what
 
-## bar
+## why

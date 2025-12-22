@@ -1,0 +1,44 @@
+<main class="main">
+    <div class="body" {{ if it.content && it.pagefind }}data-pagefind-body{{ /if }} >
+        {{ if !it.title }}
+            <h1>{{ it.basename }}</h1>
+        {{ /if }}
+    {{ if content }}
+            <div class="content">
+                {{ content }}
+            </div>
+        {{ else }}
+    {{ if it.title }}
+          <h1>{{ it.title }}</h1>
+        {{ /if }}
+        <p class="emptyState">The page <code>{{ url }}</code> is empty</p>
+        {{ /if }}
+    </div>
+
+    {{ set children = nav.menu( url, `lang=${lang} hide_menu!=true`, "order=asc title=asc-locale basename=asc-locale", )?.children }}
+
+    {{ if children }}
+        <nav class="body-children">
+    {{ for child of children }}
+    {{ if child.data.url }}
+            <a href="{{ child.data.url }}">{{
+                child.data.title || child.data.basename
+            }}</a>
+        {{ /if }}
+    {{ /for }}
+        </nav>
+    {{ /if }}
+
+    {{ if it.footnotes?.length }}
+        <aside role="note" class="footnotes">
+        <dl>
+          {{ for note of footnotes }}
+            <div id="{{ note.id }}" class="footnote">
+              <dt><a href="#{{ note.refId }}">{{ note.label }}</a></dt>
+              <dd>{{ note.content }}</dd>
+            </div>
+          {{ /for }}
+        </dl>
+        </aside>
+    {{ /if }}
+</main>

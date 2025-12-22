@@ -1,2 +1,2 @@
 menu_links: [ ]
-logo: # path to logo image
+logo: 'src/assets/images/logo.png'
