@@ -4,6 +4,7 @@ import title                                from 'https://deno.land/x/lume_markd
 import toc                                  from 'https://deno.land/x/lume_markdown_plugins@v0.9.0/toc.ts'
 import basePath                             from 'lume/plugins/base_path.ts'
 import date                                 from 'lume/plugins/date.ts'
+import esbuild                              from 'lume/plugins/esbuild.ts'
 import favicon, {Options as FaviconOptions} from 'lume/plugins/favicon.ts'
 import multilanguage                        from 'lume/plugins/multilanguage.ts'
 import nav                                  from 'lume/plugins/nav.ts'
@@ -59,6 +60,21 @@ export default function (options: Options = {}) {
         .use(date())
         .use(favicon(options.favicon))
         .use(basePath())
+        .use(esbuild({
+                   extensions: [".ts", ".js"],
+                   options: {
+                     bundle: true,
+                     format: "esm",
+                     minify: true,
+                     keepNames: true,
+                     platform: "browser",
+                     tsconfigRaw: {
+                       compilerOptions: {
+                         experimentalDecorators: true,
+                       },
+                     },
+                   },
+                 }))
         .data('languages', options.languages || [])
         .use(phosphor({
                         ...options.icons,
@@ -67,7 +83,7 @@ export default function (options: Options = {}) {
         .data('layout', 'layout.vto')
         .data('order', 0)
         .mergeKey('extra_head', 'stringArray')
-        .add('menu.js')
+        .add('_components/menu.ts')
         .add('copy-code-button.js')
         .process(['.html'], (pages) => {
           pages.forEach((page) => {

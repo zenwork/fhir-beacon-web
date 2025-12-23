@@ -18,7 +18,6 @@ export default function (options?: Options) {
       '_includes/templates/menu_item.vto',
       '_includes/templates/menu.vto',
       'favicon.svg',
-      'menu.js',
       'menu.page.ts',
       'copy-code-button.js',
     ]

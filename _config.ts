@@ -12,4 +12,6 @@ site.use(theme())
 site.use(ogimages())
 site.use(metas())
 
+site.add('_includes/css')
+
 export default site

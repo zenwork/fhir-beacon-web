@@ -18,7 +18,9 @@
             "lume/types.ts"
         ],
         "jsx": "react-jsx",
-        "jsxImportSource": "lume"
+        "jsxImportSource": "lume",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "unstable": [
         "temporal",
