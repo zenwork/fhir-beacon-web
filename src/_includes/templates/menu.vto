@@ -20,7 +20,7 @@
         <li>
           <a
             href="{{ alt.url }}"
-            {{ if alt.lang == lang }}aria-current="page"{{ /if }}
+            {{ if alt.lang === lang }}aria-current="page"{{ /if }}
             title="{{ alt.title |> escape }}"
           >
             {{ alt.lang |> langName }}
