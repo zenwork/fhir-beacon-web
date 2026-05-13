@@ -2,4 +2,20 @@
 layout: layouts/base.vto
 title: Theme Demo Home
 ---
-hello world!
+<h1>Hello World</h1>
+
+<h2>world!</h2>
+<code-example language="typescript">
+  console.log('hello world');
+</code-example>
+<h2>world!</h2>
+<demo-pane
+  data='{"message":"Smoke page demo","status":"Ready"}'
+  template='<wa-callout variant="brand"><strong>${status}</strong>: ${message}</wa-callout>'
+  imports='["callout"]'
+  readonly
+>
+</demo-pane>
+<h2>world!</h2>
+<h2>world!</h2>
+<h2>world!</h2>
