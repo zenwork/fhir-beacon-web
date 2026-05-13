@@ -2,7 +2,7 @@
 id: index
 ---
 
-# Simple Wiki
+# FHIR Beacon
 
 Create Markdown files to add pages.
 

@@ -1,17 +1,35 @@
-import lume     from 'lume/mod.ts'
-import metas    from 'lume/plugins/metas.ts'
-import ogimages from 'lume/plugins/og_images.ts'
-import theme    from './mod.ts'
+import lume    from 'lume/mod.ts'
+import esbuild from 'lume/plugins/esbuild.ts'
+import theme   from 'theme-webawesome'
 
 
 
 
-const site = lume({ src: './src' })
+const site = lume({
+  watcher: {
+    ignore: ["node_modules", ".deno", "_site", ".git", ".idea"],
+  },
+});
 
-site.use(theme())
-site.use(ogimages())
-site.use(metas())
+site.ignore("node_modules");
+site.ignore(".deno");
 
-site.add('_includes/css')
+site.use(theme());
 
-export default site
+site.use(esbuild({
+  extensions: [".ts", ".js"],
+  options: {
+    bundle: true,
+    format: "esm",
+    minify: true,
+    platform: "browser",
+    // Ensure decorators are supported for Lit components
+    tsconfigRaw: {
+      compilerOptions: {
+        experimentalDecorators: true,
+      },
+    },
+  },
+}));
+
+export default site;

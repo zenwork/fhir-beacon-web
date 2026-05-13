@@ -1,9 +1,23 @@
 {
     "imports": {
-        "lume/": "https://deno.land/x/lume@v3.1.4/",
-        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.14.11/",
+        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.1.0",
+        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.3/",
         "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
-        "lit": "npm:lit@3.3.1"
+        "@codemirror/commands": "npm:@codemirror/commands@^6.0.0",
+        "@codemirror/lang-html": "npm:@codemirror/lang-html@^6.0.0",
+        "@codemirror/lang-javascript": "npm:@codemirror/lang-javascript@^6.0.0",
+        "@codemirror/lang-json": "npm:@codemirror/lang-json@^6.0.0",
+        "@codemirror/language": "npm:@codemirror/language@^6.0.0",
+        "@codemirror/state": "npm:@codemirror/state@^6.0.0",
+        "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
+        "@codemirror/view": "npm:@codemirror/view@^6.0.0",
+        "dompurify": "npm:dompurify@^3.0.0",
+        "lit": "npm:lit@3.3.1",
+        "lume/": "https://deno.land/x/lume@v3.2.4/",
+        "prismjs": "npm:prismjs@^1.29.0",
+        "prismjs/": "npm:/prismjs@^1.29.0/",
+        "theme-webawesome": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@88e9e14ee40e072064e985f55e5f270b3cc0a7aa/mod.ts"
+        
     },
     "lock": false,
     "tasks": {
@@ -30,5 +44,6 @@
         "plugins": [
             "https://deno.land/x/lume@v3.1.4/lint.ts"
         ]
-    }
+    },
+    "nodeModulesDir": "none"
 }
