@@ -1,8 +1,27 @@
-import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/1a15ebed7f3165c22aec4f892d80639501173156/src/components/index.ts'
+import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/64a6bbd8198f7426aa7d705a9d38b1c9295150dd/src/components/index.ts'
 import DOMPurify       from 'dompurify'
 import * as fhirBeacon from 'fhir-beacon'
 
 
+
+
+const SHOELACE_THEME_URL = "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css";
+
+function ensureShoelaceTheme(): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+  const existing = document.querySelector<HTMLLinkElement>(`link[href="${SHOELACE_THEME_URL}"]`);
+  if (existing) {
+    return;
+  }
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = SHOELACE_THEME_URL;
+  document.head.appendChild(link);
+}
+
+ensureShoelaceTheme();
 
 
 const runtime = globalThis as typeof globalThis & { fhirBeacon?: typeof fhirBeacon };
