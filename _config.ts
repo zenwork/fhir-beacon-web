@@ -1,6 +1,8 @@
-import lume from "lume/mod.ts";
-import esbuild from "lume/plugins/esbuild.ts";
-import theme from "theme/mod.ts";
+import lume  from 'lume/mod.ts'
+import theme from 'theme/mod.ts'
+
+
+
 
 console.log("Theme import.meta.url:", import.meta.resolve("theme/mod.ts"));
 
@@ -20,22 +22,9 @@ site.use(theme({
     // Or provide a full nav filter string:
     // filter: 'hide_menu!=true url^=/guides/',
   },
+  componentEntrypoint: "components/site-components.ts",
 }));
 
-site.use(esbuild({
-  extensions: [".ts", ".js"],
-  options: {
-    bundle: true, // This is crucial
-    format: "esm",
-    platform: "browser",
-    minify: true,
-    keepNames: true,
-    tsconfigRaw: {
-      compilerOptions: {
-        experimentalDecorators: true,
-      },
-    },
-  },
-}));
+
 
 export default site;

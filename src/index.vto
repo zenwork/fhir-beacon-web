@@ -9,11 +9,20 @@ title: Theme Demo Home
   console.log('hello world');
 </code-example>
 <h2>world!</h2>
+  {{set data = {data:{
+	system: "phone",
+	value: "(555) 675 5745",
+	use: "home",
+	period: {
+		start: "2022-07-01",
+		end: "2024-07-01",
+	},
+}} |> JSON.stringify }}
+  {{set template ='<fhir-contact-point .data=${data} mode="structure" open > </fhir-contact-point>'}}
 <demo-pane
-  data='{"message":"Smoke page demo","status":"Ready"}'
-  template='<wa-callout variant="brand"><strong>${status}</strong>: ${message}</wa-callout>'
-  imports='["callout"]'
-  readonly
+  data='{{data}}'
+  template='{{template}}'
+  editor-open
 >
 </demo-pane>
 <h2>world!</h2>

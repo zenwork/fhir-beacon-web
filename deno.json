@@ -12,11 +12,12 @@
         "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
         "@codemirror/view": "npm:@codemirror/view@^6.0.0",
         "dompurify": "npm:dompurify@^3.0.0",
+        "fhir-beacon": "npm:fhir-beacon@0.3.0/dist/fhir-beacon.js",
         "lit": "npm:lit@3.3.1",
         "lume/": "https://deno.land/x/lume@v3.2.4/",
         "prismjs": "npm:prismjs@^1.29.0",
         "prismjs/": "npm:/prismjs@^1.29.0/",
-        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@6f26cce/"
+        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@1a15ebed7f3165c22aec4f892d80639501173156/"
         
     },
     "lock": false,
