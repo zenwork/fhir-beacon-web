@@ -72,6 +72,11 @@ deno task update-deps
 
 - Keep versions explicit and changes scoped to the requested task.
 
+## Git Commits
+
+- Do NOT add "Co-authored-by: Junie" or similar trailers to commit messages unless explicitly requested.
+- Use logical, descriptive commit messages.
+
 ## Agent Workflow Expectations
 
 1. Read nearby files before editing; follow existing patterns.
