@@ -16,7 +16,7 @@
         "lume/": "https://deno.land/x/lume@v3.2.4/",
         "prismjs": "npm:prismjs@^1.29.0",
         "prismjs/": "npm:/prismjs@^1.29.0/",
-        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@88e9e14ee40e072064e985f55e5f270b3cc0a7aa/"
+        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@6f26cce/"
         
     },
     "lock": false,
