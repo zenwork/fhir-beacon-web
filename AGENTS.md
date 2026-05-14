@@ -76,6 +76,7 @@ deno task update-deps
 
 - Do NOT add "Co-authored-by: Junie" or similar trailers to commit messages unless explicitly requested.
 - Use logical, descriptive commit messages.
+- use conventional commit messages (https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Agent Workflow Expectations
 

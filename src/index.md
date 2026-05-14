@@ -5,10 +5,13 @@ id: welcome
 
 <div style="width:100%;text-align: center">
 
-# FHIR Beacon UI
-
 <img src="assets/images/logo.png" alt="FHIR Beacon Logo" width="100" style="margin: 2rem">
 
+# FHIR Beacon UI
+
+[git](https://github.com/zenwork/fhir-beacon)|
+[storybook](https://fhir-beacon.deno.dev)|
+[showcase](https://fhir-beacon-app.deno.dev)
 
 The FHIR Beacon library is a UI library that takes raw FHIR data and doesn't need middleware or data transformation steps. It is made up of a library of web components that you use like any other HTML element. It provides an API to support advanced features like extensions and profiling.
 
