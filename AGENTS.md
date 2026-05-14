@@ -30,7 +30,6 @@ This file defines working rules for coding agents contributing to `fhir-beacon-d
 - Documentation pages: `src/**/*.md`
 - Site/content metadata:
   - [`src/_data.yml`](src/_data.yml)
-  - [`_data.yml`](_data.yml)
 - Build/site behavior:
   - [`_config.ts`](_config.ts)
   - [`deno.json`](deno.json)

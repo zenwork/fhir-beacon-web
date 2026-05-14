@@ -1,3 +1,5 @@
 menu_links: []
 logo: src/assets/images/logo.png
 lang: ch-en
+metas:
+  site: FHIR Beacon UI

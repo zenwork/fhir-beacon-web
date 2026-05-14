@@ -1,10 +1,5 @@
-import lume  from 'lume/mod.ts'
-import theme from 'theme/mod.ts'
-
-
-
-
-console.log("Theme import.meta.url:", import.meta.resolve("theme/mod.ts"));
+import lume from "lume/mod.ts";
+import theme from "theme/mod.ts";
 
 const site = lume({
   src: "./src",
@@ -19,12 +14,10 @@ site.ignore(".deno");
 site.use(theme({
   siteToc: {
     includeUrlPrefix: "/",
-    // Or provide a full nav filter string:
-    // filter: 'hide_menu!=true url^=/guides/',
   },
   componentEntrypoint: "components/site-components.ts",
 }));
 
-
+site.copy("assets", "assets");
 
 export default site;
