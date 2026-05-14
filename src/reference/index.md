@@ -1,5 +1,5 @@
 ---
-hide_menu: false
+layout: layouts/base.vto
 ---
 # Reference
 

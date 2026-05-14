@@ -1,4 +1,5 @@
 ---
+layout: layouts/base.vto
 id: getting-started
 ---
 

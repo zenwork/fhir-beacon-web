@@ -2,33 +2,25 @@ import lume from "lume/mod.ts";
 import esbuild from "lume/plugins/esbuild.ts";
 import theme from "theme/mod.ts";
 
-console.log("Theme import.meta.url:", import.meta.resolve('theme/mod.ts'));
+console.log("Theme import.meta.url:", import.meta.resolve("theme/mod.ts"));
 
 const site = lume({
+  src: "./src",
   watcher: {
-    ignore: [".deno", "_site", ".git", ".idea"],
+    ignore: ["node_modules", ".deno", "_site", ".git", ".idea"],
   },
 });
 
+site.ignore("node_modules");
 site.ignore(".deno");
 
-site.use(theme());
-
-// Ensure Web Awesome runtime assets are available when using the theme remotely.
-// The remote theme snapshot does not include the theme repo's local src/lib bundle.
-const webawesomeDistCdnPath = "node_modules/@awesome.me/webawesome/dist-cdn";
-const webawesomeDistPath = "node_modules/@awesome.me/webawesome/dist";
-try {
-  Deno.statSync(webawesomeDistCdnPath);
-  site.copy(webawesomeDistCdnPath, "lib/webawesome/dist-cdn");
-  Deno.statSync(webawesomeDistPath);
-  site.copy(webawesomeDistPath, "lib/webawesome/dist");
-} catch {
-  site.copy(
-    "npm:@awesome.me/webawesome@3.1.0/dist-cdn/**/*",
-    "lib/webawesome/dist-cdn",
-  );
-}
+site.use(theme({
+  siteToc: {
+    includeUrlPrefix: "/",
+    // Or provide a full nav filter string:
+    // filter: 'hide_menu!=true url^=/guides/',
+  },
+}));
 
 site.use(esbuild({
   extensions: [".ts", ".js"],
