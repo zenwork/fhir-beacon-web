@@ -1,0 +1,48 @@
+---
+layout: layouts/base.vto
+title: The Concept  
+---
+<h1>Getting Started</h1>
+<h2>Simple FHIR UIs</h2>
+
+<p>Imagine being able to write UI code like this whether you are creating a SPA, SSR, or SSG generated site.</p>
+
+<code-example language="html">
+  &lt;ui-card&gt;
+      &lt;fhir-patient&gt;&lt;/fhir-patient&gt;
+      &lt;ol&gt;
+          &lt;li&gt;
+            &lt;fhir-observation&gt;&lt;/fhir-observation&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;fhir-observation&gt;&lt;/fhir-observation&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;fhir-observation&gt;&lt;/fhir-observation&gt;
+          &lt;/li&gt;
+      &lt;/ol&gt;
+  &lt;/ui-card&gt;
+</code-example>
+<br><br>
+<p>
+  👆This is what FHIR Beacon is all about.
+</p>
+<h2>It Can't be this easy!</h2>
+<p>
+  It isn't as simple as that, yet. But take a look below at this real example. It takes the raw FHIR patient data and
+  presents it in a human-readable way, including extensions.
+</p>
+
+
+<demo-pane
+  data='{{patient.data |> JSON.stringify}}'
+  template='{{patient.template}}'
+  editor-open
+  output-background='color-mix(in srgb, var(--wa-color-brand-fill-loud) 10%, white)'
+>
+</demo-pane>
+
+The full library demo can be found here: <a href="https://fhir-beacon.deno.dev" target=_blank>
+  https://fhir-beacon.deno.dev</a>
+
+
