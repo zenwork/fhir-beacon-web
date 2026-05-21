@@ -1,4 +1,4 @@
-const template= '<fhir-patient .data=${data} > </fhir-contact-point>'
+const template= '<fhir-patient .data=${data} > </fhir-patient>'
 
 const data = {
   data: {

@@ -1,4 +1,4 @@
-import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/64a6bbd8198f7426aa7d705a9d38b1c9295150dd/src/components/index.ts'
+import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/d45959f81f80fd6b86a985fa74430f333e3f5716/src/components/index.ts'
 import DOMPurify       from 'dompurify'
 import * as fhirBeacon from 'fhir-beacon'
 

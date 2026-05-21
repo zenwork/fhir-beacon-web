@@ -1,5 +1,8 @@
-import lume from "lume/mod.ts";
-import theme from "theme/mod.ts";
+import lume  from 'lume/mod.ts'
+import theme from 'theme/mod.ts'
+
+
+
 
 const site = lume({
   src: "./src",
@@ -13,7 +16,12 @@ site.ignore(".deno");
 
 site.use(theme({
   siteToc: {
-    includeUrlPrefix: "/",
+    root: "src",
+    sections: [
+      { folder: "getting_started", label: "Getting Started", order: 0 },
+      { folder: "documentation", label: "Documentation", order: 1 },
+      { folder: "customization", label: "Customization", order: 2 },
+    ],
   },
   componentEntrypoint: "components/site-components.ts",
 }));
