@@ -183,6 +183,10 @@ Focus states must remain visible on both light and dark backgrounds.
 The docs should favor the theme's `code-example` and `demo-pane` components for
 interactive or inspectable examples.
 
+When examples use Lit bindings (for example `.data=${data}`), the whole snippet
+must be wrapped in a render function using `html\`\``. Do not show Lit binding
+syntax in plain HTML snippets.
+
 | Token                          | Use                                 |
 |--------------------------------|-------------------------------------|
 | `--fb-code-background`         | Code editor and static code surface |

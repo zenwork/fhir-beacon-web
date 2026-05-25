@@ -21,7 +21,7 @@ site.use(theme({
     sections: [
       { folder: "learn", label: "Learn", order: 0 },
       { folder: "fhir-data", label: "FHIR Data", order: 1 },
-      { folder: "customization", label: "Customization", order: 2 },
+      { folder: "customization", label: "Customize", order: 2 },
       { folder: "reference", label: "Reference", order: 3 },
       { folder: "play", label: "Play", order: 4 },
     ],

@@ -18,8 +18,7 @@ translating everything through a middle-tier view model.
 - [Learn](./learn/) explains the project and gives the first practical path.
 - [FHIR Data](./fhir-data/) shows what parts of FHIR are available and how they
   are handled.
-- [Customization](./customization/) explains how to adapt the presentation
-  layer.
+- [Customize](./customization/) explains how to adapt the presentation layer.
 - [Reference](./reference/) answers what exists today.
 - [Play](./play/) is the planned interactive example editor.
 

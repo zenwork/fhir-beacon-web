@@ -1,10 +1,10 @@
 ---
 layout: layouts/base.vto
-title: Customization
+title: Customize
 order: 2
 ---
 
-# Customization
+# Customize
 
 Customization is for frontend developers who want to adapt how FHIR Beacon looks
 and renders.

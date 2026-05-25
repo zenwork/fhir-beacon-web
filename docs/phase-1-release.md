@@ -21,6 +21,14 @@ Every pull request should pass:
 - [x] `deno task check`
 - [x] `deno task check:drafts`
 
+## Documentation Conventions
+
+- [x] Code snippets in docs use the shared `code-example` component rather than
+      raw fenced code blocks.
+- [x] Any snippet with Lit binding syntax (for example `.data=${data}`) wraps
+      the full fragment in a render function using `html\`\``. Otherwise, use
+      plain HTML examples.
+
 Release checks run `deno task check` when a docs GitHub release is published.
 
 ## Draft Publishing
@@ -38,6 +46,8 @@ documentation structure.
       links.
 - [x] CI workflow runs public and draft verification.
 - [x] Docs release workflow exists.
+- [ ] Review design/styling decisions in this repo and define which should move
+      into `theme-webawesome`.
 - [ ] Deno Deploy docs app is created and connected to the repository.
 - [ ] Production docs URL is confirmed.
 - [ ] Storybook deployment target is confirmed or explicitly deferred.
