@@ -1,0 +1,93 @@
+---
+layout: layouts/base.vto
+title: Getting Started
+order: 1
+---
+
+<section class="docs-stack">
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  <section class="docs-section">
+    <h2>Install</h2>
+    <p>Install the package:</p>
+    <code-example language="text">npm install fhir-beacon</code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Register Components</h2>
+    <p>Import the library so the custom elements are registered:</p>
+    <code-example language="typescript">import "fhir-beacon";</code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Render a Resource</h2>
+    <p>
+      FHIR Beacon does not require Lit. The library provides custom elements,
+      and Lit is only used in some examples as a compact way to show property
+      binding.
+    </p>
+    <p>Render a resource with the matching FHIR Beacon element:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import { html } from "lit";
+import type { PatientData } from "fhir-beacon";
+
+export function renderPatient(patient: PatientData) {
+  return html`
+    &lt;fhir-patient .data="${patient}"&gt;&lt;/fhir-patient&gt;
+  `;
+}
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Use Plain Custom Elements</h2>
+    <p>
+      FHIR Beacon components are web components, so they can be used in most
+      frontend environments that support custom elements.
+    </p>
+    <p>The same component can also be used without Lit:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="html">
+&lt;fhir-patient id="patient"&gt;&lt;/fhir-patient&gt;
+
+&lt;script type="module"&gt;
+  import "fhir-beacon";
+
+  document.querySelector("#patient").data = patient;
+&lt;/script&gt;
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Try It</h2>
+    <p>Try the same idea with editable data and markup:</p>
+    <demo-pane
+      data='{"patient":{"resourceType":"Patient","name":[{"given":["Alex"],"family":"Rivera"}],"gender":"unknown","birthDate":"1970-01-01"}}'
+      template='<fhir-patient .data="${patient}"></fhir-patient>'
+      default-tab="output"
+      editor-open
+    >
+    </demo-pane>
+  </section>
+
+  <section class="docs-section">
+    <h2>Next Steps</h2>
+    <ul>
+      <li>
+        <a href="../overview/">Read the overview</a> to understand the direct
+        rendering model.
+      </li>
+      <li>
+        <a href="../project-status/">Check project status</a> to see what is
+        available today.
+      </li>
+      <li>
+        <a href="../../reference/">Use Reference</a> when you need current
+        coverage and component lookup.
+      </li>
+    </ul>
+  </section>
+</section>

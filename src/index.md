@@ -1,22 +1,40 @@
 ---
 layout: layouts/base.vto
-id: welcome
+title: FHIR Beacon
+order: 0
 ---
 
-<div style="width:100%;text-align: center">
+# FHIR Beacon
 
-<img src="assets/images/logo.png" alt="FHIR Beacon Logo" width="100" style="margin: 2rem">
+FHIR Beacon is a frontend UI library for rendering FHIR data directly in the
+browser.
 
-# FHIR Beacon UI
+It is built as a set of web components that can be used like regular HTML
+elements. The central idea is simple: render FHIR-shaped data without first
+translating everything through a middle-tier view model.
 
-[git](https://github.com/zenwork/fhir-beacon)|
-[storybook](https://fhir-beacon.deno.dev)|
-[showcase](https://fhir-beacon-app.deno.dev)
+## Start Here
 
-The FHIR Beacon library is a UI library that takes raw FHIR data and doesn't need middleware or data transformation steps. It is made up of a library of web components that you use like any other HTML element. It provides an API to support advanced features like extensions and profiling.
+- [Learn](./learn/) explains the project and gives the first practical path.
+- [FHIR Data](./fhir-data/) shows what parts of FHIR are available and how they
+  are handled.
+- [Customization](./customization/) explains how to adapt the presentation
+  layer.
+- [Reference](./reference/) answers what exists today.
+- [Play](./play/) is the planned interactive example editor.
 
-This library is designed to be used in applications where the FHIR data is complex and varied and where avoiding layers of middleware data transformation is beneficial. 
+## Current Status
 
-It is designed to follow the contours of the FHIR model and semantics so that a developer or AI can easily map the specifications found in IGs to the UI library components. 
+FHIR Beacon is currently alpha software. The library is usable for exploration
+and feedback, but the documentation and implementation are still growing toward
+v1.
 
-</div>
+The first documentation release is a preview. It introduces the structure,
+documents low-hanging existing functionality, and makes current coverage visible
+without pretending every area is complete.
+
+## Links
+
+- [GitHub](https://github.com/zenwork/fhir-beacon)
+- [Storybook](https://fhir-beacon.deno.dev)
+- [Showcase app](https://fhir-beacon-app.deno.dev)
