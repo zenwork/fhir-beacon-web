@@ -1,9 +1,24 @@
 {
     "imports": {
-        "lume/": "https://deno.land/x/lume@v3.0.6/",
-        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.12.5/",
+        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.1.0",
+        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.3/",
         "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
-        "lit": "npm:lit@3.3.1"
+        "@codemirror/commands": "npm:@codemirror/commands@^6.0.0",
+        "@codemirror/lang-html": "npm:@codemirror/lang-html@^6.0.0",
+        "@codemirror/lang-javascript": "npm:@codemirror/lang-javascript@^6.0.0",
+        "@codemirror/lang-json": "npm:@codemirror/lang-json@^6.0.0",
+        "@codemirror/language": "npm:@codemirror/language@^6.0.0",
+        "@codemirror/state": "npm:@codemirror/state@^6.0.0",
+        "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
+        "@codemirror/view": "npm:@codemirror/view@^6.0.0",
+        "dompurify": "npm:dompurify@^3.0.0",
+        "fhir-beacon": "npm:fhir-beacon@0.3.0/dist/fhir-beacon.js",
+        "lit": "npm:lit@3.3.1",
+        "lume/": "https://deno.land/x/lume@v3.2.4/",
+        "prismjs": "npm:prismjs@^1.29.0",
+        "prismjs/": "npm:/prismjs@^1.29.0/",
+        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@v1.0.0/"
+        
     },
     "lock": false,
     "tasks": {
@@ -28,7 +43,8 @@
     ],
     "lint": {
         "plugins": [
-            "https://deno.land/x/lume@v3.0.6/lint.ts"
+            "https://deno.land/x/lume@v3.1.4/lint.ts"
         ]
-    }
+    },
+    "nodeModulesDir": "none"
 }

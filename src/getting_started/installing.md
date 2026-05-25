@@ -1,11 +1,12 @@
 ---
+layout: layouts/base.vto
 id: getting-started
 ---
 
-# Installing
+## Prerequisites
 
-Create Markdown files to add pages.
+## Installing
 
-## what
+## Using
 
-## why
+

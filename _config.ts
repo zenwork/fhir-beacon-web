@@ -1,17 +1,38 @@
-import lume     from 'lume/mod.ts'
-import metas    from 'lume/plugins/metas.ts'
-import ogimages from 'lume/plugins/og_images.ts'
-import theme    from './mod.ts'
+import lume  from 'lume/mod.ts'
+import theme from 'theme/mod.ts'
 
 
 
 
-const site = lume({ src: './src' })
+const site = lume({
+  src: "./src",
+  watcher: {
+    ignore: ["node_modules", ".deno", "_site", ".git", ".idea"],
+  },
+});
 
-site.use(theme())
-site.use(ogimages())
-site.use(metas())
+site.ignore("node_modules");
+site.ignore(".deno");
 
-site.add('_includes/css')
+site.use(theme({
+  siteLogo: {
+    src: "/assets/images/logo.png",
+    alt: "Fhir Beacon logo",
+  },
+  siteToc: {
+    root: "src",
+    sections: [
+      { folder: "getting_started", label: "Getting Started", order: 0 },
+      { folder: "documentation", label: "Documentation", order: 1 },
+      { folder: "customization", label: "Customization", order: 2 },
+    ],
+  },
+  componentEntrypoint: "components/site-components.ts",
+  webawesome: {
+    customPropertiesCssPath: "/styles/webawesome-theme.css"
+  },
+}));
 
-export default site
+site.copy("assets", "assets");
+
+export default site;
