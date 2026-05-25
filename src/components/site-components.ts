@@ -1,4 +1,5 @@
-import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/d45959f81f80fd6b86a985fa74430f333e3f5716/src/components/index.ts'
+// deno-lint-ignore-file
+import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/v1.0.0/src/components/index.ts'
 import DOMPurify       from 'dompurify'
 import * as fhirBeacon from 'fhir-beacon'
 

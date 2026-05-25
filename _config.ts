@@ -15,6 +15,10 @@ site.ignore("node_modules");
 site.ignore(".deno");
 
 site.use(theme({
+  siteLogo: {
+    src: "/assets/images/logo.png",
+    alt: "Fhir Beacon logo",
+  },
   siteToc: {
     root: "src",
     sections: [
@@ -24,6 +28,9 @@ site.use(theme({
     ],
   },
   componentEntrypoint: "components/site-components.ts",
+  webawesome: {
+    customPropertiesCssPath: "/styles/webawesome-theme.css"
+  },
 }));
 
 site.copy("assets", "assets");
