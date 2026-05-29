@@ -1,0 +1,13 @@
+---
+layout: layouts/full-width.vto
+title: Play
+order: 4
+---
+
+<demo-pane
+  data='{"patient":{"resourceType":"Patient","name":[{"given":["Alex"],"family":"Rivera"}],"gender":"unknown","birthDate":"1970-01-01"}}'
+  template='<fhir-patient .data="${patient}"></fhir-patient>'
+  default-tab="output"
+  editor-open
+>
+</demo-pane>

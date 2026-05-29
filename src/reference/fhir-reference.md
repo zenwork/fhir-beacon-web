@@ -4,20 +4,19 @@ title: FHIR Reference
 order: 0
 ---
 
-# FHIR Reference
+# FHIR Specification Coverage
 
-FHIR Reference uses FHIR language for coverage and support information. The
-total sets below come from the official FHIR R5 StructureDefinition bundles
-vendored with the library: `profiles-types.json` and `profiles-resources.json`.
-They align with the published FHIR
-[data types](https://hl7.org/fhir/datatypes.html) and
-[resource list](https://hl7.org/fhir/resourcelist.html).
+The FHIR Beacon library is designed to closely map the FHIR specification. It 
+aligns with the published FHIR.
+
+* [data types](https://hl7.org/fhir/datatypes.html) 
+* [resource list](https://hl7.org/fhir/resourcelist.html).
 
 FHIR Beacon components map semantically to the official FHIR surface. Status
 labels describe the current fhir-beacon implementation for that FHIR concept;
 they do not define the scope of the reference list.
 
-FHIR version: `5.0.0`, build `2aecd53`.
+FHIR version: `5.0.0`
 
 ## Status Labels
 
@@ -38,7 +37,7 @@ Primitive types are official FHIR primitive StructureDefinitions. FHIR Beacon
 renders them through `fhir-primitive`.
 
 | Type           | Base          | Status                                                | Renderer         | FHIR                                                     | Storybook                                                                                                    |
-| -------------- | ------------- | ----------------------------------------------------- | ---------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+|----------------|---------------|-------------------------------------------------------|------------------|----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | `base64Binary` | PrimitiveType | <wa-badge variant="success" pill>available</wa-badge> | `fhir-primitive` | [FHIR](https://hl7.org/fhir/datatypes.html#base64Binary) | [Storybook](https://fhir-beacon.deno.dev/?path=/story/components-datatypes-primitive-type-all--base-64)      |
 | `boolean`      | PrimitiveType | <wa-badge variant="success" pill>available</wa-badge> | `fhir-primitive` | [FHIR](https://hl7.org/fhir/datatypes.html#boolean)      | [Storybook](https://fhir-beacon.deno.dev/?path=/story/components-datatypes-primitive-type-all--boolean)      |
 | `canonical`    | uri           | <wa-badge variant="success" pill>available</wa-badge> | `fhir-primitive` | [FHIR](https://hl7.org/fhir/datatypes.html#canonical)    | [Storybook](https://fhir-beacon.deno.dev/?path=/story/components-datatypes-primitive-type-all--canonical)    |
@@ -67,7 +66,7 @@ These official abstract complex types shape the FHIR type model. FHIR Beacon
 uses them internally, but they are not currently part of the public API.
 
 | Type              | Base     | Status                                              | Notes          | FHIR                                                        | Storybook |
-| ----------------- | -------- | --------------------------------------------------- | -------------- | ----------------------------------------------------------- | --------- |
+|-------------------|----------|-----------------------------------------------------|----------------|-------------------------------------------------------------|-----------|
 | `BackboneElement` | Element  | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/datatypes.html#BackboneElement) |           |
 | `BackboneType`    | DataType | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/datatypes.html#BackboneType)    |           |
 | `Base`            |          | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/types.html#Base)                |           |
@@ -80,7 +79,7 @@ uses them internally, but they are not currently part of the public API.
 These are official non-abstract FHIR complex-type StructureDefinitions.
 
 | Type                    | Base         | Status                                                | Renderer                        | FHIR                                                              | Storybook                                                                                                             |
-| ----------------------- | ------------ | ----------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+|-------------------------|--------------|-------------------------------------------------------|---------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | `Address`               | DataType     | <wa-badge variant="success" pill>available</wa-badge> | `fhir-address`                  | [FHIR](https://hl7.org/fhir/datatypes.html#Address)               | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-datatypes-complex-type-address--docs)                 |
 | `Age`                   | Quantity     | <wa-badge variant="success" pill>available</wa-badge> | `fhir-quantity` subtype         | [FHIR](https://hl7.org/fhir/datatypes.html#Age)                   | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-datatypes-complex-type-quantity--docs)                |
 | `Annotation`            | DataType     | <wa-badge variant="success" pill>available</wa-badge> | `fhir-annotation`               | [FHIR](https://hl7.org/fhir/datatypes.html#Annotation)            | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-datatypes-complex-type-annotation--docs)              |
@@ -132,7 +131,7 @@ These official abstract resource types shape the FHIR resource model. FHIR
 Beacon uses them internally, but they are not currently part of the public API.
 
 | Type                | Base           | Status                                              | Notes          | FHIR                                                | Storybook |
-| ------------------- | -------------- | --------------------------------------------------- | -------------- | --------------------------------------------------- | --------- |
+|---------------------|----------------|-----------------------------------------------------|----------------|-----------------------------------------------------|-----------|
 | `CanonicalResource` | DomainResource | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/canonicalresource.html) |           |
 | `DomainResource`    | Resource       | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/domainresource.html)    |           |
 | `MetadataResource`  | DomainResource | <wa-badge variant="danger" pill>internal</wa-badge> | not public API | [FHIR](https://hl7.org/fhir/metadataresource.html)  |           |
@@ -144,7 +143,7 @@ These are official concrete FHIR resources whose base is `Resource` rather than
 `DomainResource`.
 
 | Resource     | Base     | Status                                                | Renderer      | FHIR                                         | Storybook                                                                                |
-| ------------ | -------- | ----------------------------------------------------- | ------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------- |
+|--------------|----------|-------------------------------------------------------|---------------|----------------------------------------------|------------------------------------------------------------------------------------------|
 | `Bundle`     | Resource | <wa-badge variant="success" pill>available</wa-badge> | `fhir-bundle` | [FHIR](https://hl7.org/fhir/bundle.html)     | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-foundation-bundle--docs) |
 | `Binary`     | Resource | <wa-badge variant="neutral" pill>planned</wa-badge>   |               | [FHIR](https://hl7.org/fhir/binary.html)     |                                                                                          |
 | `Parameters` | Resource | <wa-badge variant="neutral" pill>planned</wa-badge>   |               | [FHIR](https://hl7.org/fhir/parameters.html) |                                                                                          |
@@ -154,7 +153,7 @@ These are official concrete FHIR resources whose base is `Resource` rather than
 These are official concrete FHIR resources whose base is `DomainResource`.
 
 | Domain resource                      | Base           | Status                                                | Renderer                      | FHIR                                                                 | Storybook                                                                                                          |
-| ------------------------------------ | -------------- | ----------------------------------------------------- | ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+|--------------------------------------|----------------|-------------------------------------------------------|-------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | `Patient`                            | DomainResource | <wa-badge variant="success" pill>available</wa-badge> | `fhir-patient`                | [FHIR](https://hl7.org/fhir/patient.html)                            | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-resources-patient-patient--docs)                   |
 | `Account`                            | DomainResource | <wa-badge variant="brand" pill>preview</wa-badge>     | `fhir-account`                | [FHIR](https://hl7.org/fhir/account.html)                            | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-resources-account-account--docs)                   |
 | `Appointment`                        | DomainResource | <wa-badge variant="brand" pill>preview</wa-badge>     | `fhir-appointment`            | [FHIR](https://hl7.org/fhir/appointment.html)                        | [Storybook](https://fhir-beacon.deno.dev/?path=/docs/components-resources-appointment-appointment--docs)           |
