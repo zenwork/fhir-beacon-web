@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      deploy_production:
+        description: Deploy the current main branch to production
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -28,21 +34,21 @@ jobs:
           release-type: simple
 
       - name: Checkout
-        if: ${{ steps.release.outputs.release_created == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' || github.event.inputs.deploy_production == 'true' }}
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        if: ${{ steps.release.outputs.release_created == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' || github.event.inputs.deploy_production == 'true' }}
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
       - name: Verify release build
-        if: ${{ steps.release.outputs.release_created == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' || github.event.inputs.deploy_production == 'true' }}
         run: deno task check
 
       - name: Deploy production revision
-        if: ${{ steps.release.outputs.release_created == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' || github.event.inputs.deploy_production == 'true' }}
         env:
           DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
           DENO_DEPLOY_ORG: ${{ vars.DENO_DEPLOY_ORG }}
@@ -55,7 +61,7 @@ jobs:
             --prod | tee deploy-prod.log
 
       - name: Publish production summary
-        if: ${{ steps.release.outputs.release_created == 'true' }}
+        if: ${{ steps.release.outputs.release_created == 'true' || github.event.inputs.deploy_production == 'true' }}
         env:
           DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
         run: |
