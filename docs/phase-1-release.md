@@ -12,7 +12,9 @@ The docs site has its own release version tracked in `version.txt`.
 
 Release Please is configured with the `simple` release type. It opens release
 pull requests from conventional commits, updates `CHANGELOG.md`, updates
-`version.txt`, and creates GitHub releases after the release PR is merged.
+`version.txt`, and creates GitHub releases after the release PR is merged. When
+a release is created, the same workflow verifies the release build and deploys
+the production revision to Deno Deploy.
 
 The docs release version is separate from the `fhir-beacon` library package
 version. The rendered docs should continue to state which library version they
@@ -47,7 +49,11 @@ anchor validation, and broken links fail the build.
       the full fragment in a render function using `html\`\``. Otherwise, use
       plain HTML examples.
 
-Release checks run `deno task check` when a docs GitHub release is published.
+Release checks run `deno task check` in the Release Please workflow when a docs
+GitHub release is created. GitHub does not trigger follow-up workflows from
+releases created with `GITHUB_TOKEN`, so production deployment is intentionally
+handled in the Release Please workflow instead of relying on a separate
+`release.published` event.
 
 ## Draft Publishing
 

@@ -2,10 +2,6 @@ name: Deploy
 
 on:
   pull_request:
-  release:
-    types:
-      - published
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -54,48 +50,4 @@ jobs:
             echo
             echo "### Deploy output links"
             grep -Eo 'https://[^ ]+' deploy-preview.log | sort -u | sed 's/^/- /' || echo "- (no URLs detected in deploy output)"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-  deploy:
-    # This workflow targets the NEW Deno Deploy platform via `deno deploy`.
-    # It does not use Deploy Classic / `deployctl`.
-    name: Deploy to Deno Deploy (New Platform)
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'release' && github.event.action == 'published' && github.event.release.author.login == 'github-actions[bot]' }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
-
-      - name: Verify build
-        run: deno task check
-
-      - name: Deploy production revision
-        env:
-          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
-          DENO_DEPLOY_ORG: ${{ vars.DENO_DEPLOY_ORG }}
-          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
-        run: |
-          deno deploy \
-            --token "$DENO_DEPLOY_TOKEN" \
-            --org "$DENO_DEPLOY_ORG" \
-            --app "$DENO_DEPLOY_APP" \
-            --prod | tee deploy-prod.log
-
-      - name: Publish production summary
-        env:
-          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
-        run: |
-          {
-            echo "## Deno Deploy Production"
-            echo
-            echo "- Production URL: https://$DENO_DEPLOY_APP.deno.dev"
-            echo
-            echo "### Deploy output links"
-            grep -Eo 'https://[^ ]+' deploy-prod.log | sort -u | sed 's/^/- /' || echo "- (no URLs detected in deploy output)"
           } >> "$GITHUB_STEP_SUMMARY"

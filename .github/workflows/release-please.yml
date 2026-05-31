@@ -11,6 +11,10 @@ permissions:
   issues: write
   pull-requests: write
 
+concurrency:
+  group: release-please-production
+  cancel-in-progress: false
+
 jobs:
   release-please:
     name: Release Please
@@ -18,6 +22,48 @@ jobs:
 
     steps:
       - name: Release Please
+        id: release
         uses: googleapis/release-please-action@v4
         with:
           release-type: simple
+
+      - name: Checkout
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Verify release build
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        run: deno task check
+
+      - name: Deploy production revision
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        env:
+          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
+          DENO_DEPLOY_ORG: ${{ vars.DENO_DEPLOY_ORG }}
+          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
+        run: |
+          deno deploy \
+            --token "$DENO_DEPLOY_TOKEN" \
+            --org "$DENO_DEPLOY_ORG" \
+            --app "$DENO_DEPLOY_APP" \
+            --prod | tee deploy-prod.log
+
+      - name: Publish production summary
+        if: ${{ steps.release.outputs.release_created == 'true' }}
+        env:
+          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
+        run: |
+          {
+            echo "## Deno Deploy Production"
+            echo
+            echo "- Production URL: https://$DENO_DEPLOY_APP.deno.dev"
+            echo
+            echo "### Deploy output links"
+            grep -Eo 'https://[^ ]+' deploy-prod.log | sort -u | sed 's/^/- /' || echo "- (no URLs detected in deploy output)"
+          } >> "$GITHUB_STEP_SUMMARY"
