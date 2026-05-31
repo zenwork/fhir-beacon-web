@@ -6,43 +6,55 @@ order: 3
 
 # Examples
 
-Examples show how FHIR Beacon can be used in small but realistic frontend
-workflows.
+Examples show small workflow slices that are larger than a single component.
 
 ## Patient Summary Workflow
 
-A common first workflow is a patient summary screen. The application selects a
-Patient and any related records it wants to show. FHIR Beacon renders the FHIR
-structures; the application still owns the workflow around them.
+Use this when a page needs to render one Patient and a few related Observations.
+
+Page structure:
+
+<code-example language="html">
+&lt;section aria-labelledby="patient-heading"&gt;
+  &lt;h2 id="patient-heading"&gt;Patient&lt;/h2&gt;
+  &lt;fhir-patient id="patient"&gt;&lt;/fhir-patient&gt;
+
+  &lt;h3&gt;Recent observations&lt;/h3&gt;
+  &lt;div id="observations"&gt;&lt;/div&gt;
+&lt;/section&gt;
+</code-example>
+
+Data binding:
 
 <code-example language="typescript">
-import { html } from "lit";
+import "fhir-beacon";
 import type { ObservationData, PatientData } from "fhir-beacon";
 
-export function patientSummary(
-  patient: PatientData,
-  observations: ObservationData[],
-) {
-  return html`
-    &lt;section aria-labelledby="patient-heading"&gt;
-      &lt;h2 id="patient-heading"&gt;Patient&lt;/h2&gt;
-      &lt;fhir-patient .data="${patient}"&gt;&lt;/fhir-patient&gt;
+const patientElement = document.querySelector("#patient") as HTMLElement & {
+  data: PatientData;
+};
 
-      &lt;h3&gt;Recent observations&lt;/h3&gt;
-      ${observations.map((observation) =&gt; html`
-        &lt;fhir-observation .data="${observation}"&gt;&lt;/fhir-observation&gt;
-      `)}
-    &lt;/section&gt;
-  `;
+patientElement.data = patient;
+
+const observationList = document.querySelector("#observations")!;
+
+for (const observation of observations) {
+  const element = document.createElement("fhir-observation") as HTMLElement & {
+    data: ObservationData;
+  };
+
+  element.data = observation;
+  observationList.append(element);
 }
 </code-example>
 
-This workflow keeps the responsibilities separate:
+The page owns:
 
 - the application decides which Patient is active
 - the application loads and filters the related Observations
-- FHIR Beacon renders Patient and Observation data in their FHIR shape
 - the surrounding page decides headings, layout, navigation, and actions
+
+FHIR Beacon renders the Patient and Observation data.
 
 ## Storybook
 

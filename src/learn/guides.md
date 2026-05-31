@@ -6,26 +6,25 @@ order: 5
 
 # Guides
 
-Guides show how to build practical screens with FHIR Beacon.
+Guides are short task walkthroughs.
 
 ## Render A Patient Resource
 
-This guide renders a Patient resource and explains which parts belong to the
-application and which parts belong to FHIR Beacon.
+Use this when you want the smallest practical path from resource data to a
+rendered component.
 
-### 1. Register The Components
+### Register Components
 
-Import the package once in the part of your frontend that initializes custom
-elements.
+Import FHIR Beacon once before rendering its custom elements.
 
 <code-example language="typescript">
 import "fhir-beacon";
 </code-example>
 
-### 2. Keep The Resource FHIR-Shaped
+### Keep The Resource FHIR-Shaped
 
-The application can fetch, cache, authorize, and select data however it needs.
-Once the Patient is ready to render, keep the object in its FHIR shape.
+The app can fetch and authorize data however it needs. The renderer receives a
+FHIR-shaped Patient.
 
 <code-example language="typescript">
 import type { PatientData } from "fhir-beacon";
@@ -51,54 +50,39 @@ const patient: PatientData = {
 };
 </code-example>
 
-### 3. Pass The Resource To A Component
+### Render The Component
 
-With Lit, bind the Patient object to the component property.
-
-<code-example language="typescript">
-import { html } from "lit";
-
-export function patientSummary(patient: PatientData) {
-  return html`
-    &lt;fhir-patient .data="${patient}"&gt;&lt;/fhir-patient&gt;
-  `;
-}
-</code-example>
-
-Without Lit, assign the property from JavaScript.
+Add the custom element to the page.
 
 <code-example language="html">
 &lt;fhir-patient id="patient"&gt;&lt;/fhir-patient&gt;
-
-&lt;script type="module"&gt;
-  import "fhir-beacon";
-
-  document.querySelector("#patient").data = patient;
-&lt;/script&gt;
 </code-example>
 
-### 4. Keep Application Logic Outside The Renderer
+Assign the Patient to the component's `data` property.
 
-The Patient component should receive the data it is allowed to render. It should
-not decide how to fetch the Patient, whether the current user may see it, or
-which workflow should happen next.
+<code-example language="typescript">
+const patientElement = document.querySelector("#patient") as HTMLElement & {
+  data: PatientData;
+};
 
-Use application code for:
+patientElement.data = patient;
+</code-example>
 
-- loading the Patient from an API
+### Keep The Boundary Clear
+
+The app owns:
+
+- loading data
 - checking permissions
-- selecting related resources
-- handling navigation and actions
+- choosing the screen workflow
 
-Use FHIR Beacon for:
+FHIR Beacon owns:
 
-- rendering Patient-specific fields
+- rendering the Patient
 - rendering nested FHIR datatypes
-- keeping FHIR semantics visible in the UI
-- providing consistent defaults across screens
+- keeping FHIR structure visible
 
-### 5. Link To Coverage When You Need Detail
+### Check Coverage
 
 The [FHIR Reference](../../reference/fhir-reference/) page tracks which
-resources and datatypes are available, preview, partial, or planned. Check it
-when a guide depends on a specific component.
+resources and datatypes are available, preview, partial, or planned.
