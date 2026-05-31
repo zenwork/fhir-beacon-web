@@ -55,6 +55,11 @@ releases created with `GITHUB_TOKEN`, so production deployment is intentionally
 handled in the Release Please workflow instead of relying on a separate
 `release.published` event.
 
+If a production deploy needs to be rerun without creating a new release, run the
+Release Please workflow manually from GitHub Actions with `deploy_production`
+enabled. This deploys the current `main` branch to production after running
+`deno task check`.
+
 ## Draft Publishing
 
 Public builds run without `LUME_DRAFTS`, so pages with `draft: true` are hidden.
