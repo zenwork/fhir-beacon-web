@@ -15,10 +15,7 @@ render your first resource, and how the project is progressing toward v1.
 
 - [Overview](./overview/)
 - [Getting Started](./getting-started/)
+- [Concepts](./concepts/)
 - [Project Status](./project-status/)
 - [Examples](./examples/)
-
-Draft chapters are available in review builds:
-
-- Concepts
-- Guides
+- [Guides](./guides/)
