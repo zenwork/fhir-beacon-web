@@ -32,19 +32,15 @@ import type { PatientData } from "fhir-beacon";
 const patient: PatientData = {
   resourceType: "Patient",
   id: "example",
-  identifier: [
-    {
-      system: "https://example.org/mrn",
-      value: "MRN-10001",
-    },
-  ],
-  name: [
-    {
-      use: "official",
-      given: ["Alex"],
-      family: "Rivera",
-    },
-  ],
+  identifier: [{
+    system: "https://example.org/mrn",
+    value: "MRN-10001",
+  }],
+  name: [{
+    use: "official",
+    given: ["Alex"],
+    family: "Rivera",
+  }],
   gender: "unknown",
   birthDate: "1970-01-01",
 };
@@ -60,10 +56,8 @@ Add the custom element to the page.
 
 Assign the Patient to the component's `data` property.
 
-<code-example language="typescript">
-const patientElement = document.querySelector("#patient") as HTMLElement & {
-  data: PatientData;
-};
+<code-example language="javascript">
+const patientElement = document.querySelector("#patient");
 
 patientElement.data = patient;
 </code-example>

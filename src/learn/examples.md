@@ -26,25 +26,19 @@ Page structure:
 
 Data binding:
 
-<code-example language="typescript">
+<code-example language="javascript">
 import "fhir-beacon";
-import type { ObservationData, PatientData } from "fhir-beacon";
 
-const patientElement = document.querySelector("#patient") as HTMLElement & {
-  data: PatientData;
-};
-
+const patientElement = document.querySelector("#patient");
 patientElement.data = patient;
 
-const observationList = document.querySelector("#observations")!;
+const observationList = document.querySelector("#observations");
 
 for (const observation of observations) {
-  const element = document.createElement("fhir-observation") as HTMLElement & {
-    data: ObservationData;
-  };
+  const observationElement = document.createElement("fhir-observation");
 
-  element.data = observation;
-  observationList.append(element);
+  observationElement.data = observation;
+  observationList.append(observationElement);
 }
 </code-example>
 
