@@ -1,4 +1,5 @@
 import lume  from 'lume/mod.ts'
+import checkUrls from 'lume/plugins/check_urls.ts'
 import theme from 'theme/mod.ts'
 
 
@@ -17,20 +18,28 @@ site.ignore(".deno");
 site.use(theme({
   siteLogo: {
     src: "/assets/images/logo.png",
-    alt: "Fhir Beacon logo",
+    alt: "FHIR Beacon logo",
   },
   siteToc: {
     root: "src",
     sections: [
-      { folder: "getting_started", label: "Getting Started", order: 0 },
-      { folder: "documentation", label: "Documentation", order: 1 },
-      { folder: "customization", label: "Customization", order: 2 },
+      { folder: "learn", label: "Learn", order: 0 },
+      { folder: "fhir-data", label: "FHIR Data", order: 1 },
+      { folder: "customization", label: "Customize", order: 2 },
+      { folder: "reference", label: "Reference", order: 3 },
+      { folder: "play", label: "Play", order: 4 },
     ],
   },
   componentEntrypoint: "components/site-components.ts",
   webawesome: {
-    customPropertiesCssPath: "/styles/webawesome-theme.css"
+    customPropertiesCssPath: "/styles/webawesome-theme.css",
   },
+}));
+
+site.use(checkUrls({
+  anchors: true,
+  strict: true,
+  throw: true,
 }));
 
 site.copy("assets", "assets");

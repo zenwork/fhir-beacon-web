@@ -1,50 +1,60 @@
 {
-    "imports": {
-        "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.1.0",
-        "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.3/",
-        "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
-        "@codemirror/commands": "npm:@codemirror/commands@^6.0.0",
-        "@codemirror/lang-html": "npm:@codemirror/lang-html@^6.0.0",
-        "@codemirror/lang-javascript": "npm:@codemirror/lang-javascript@^6.0.0",
-        "@codemirror/lang-json": "npm:@codemirror/lang-json@^6.0.0",
-        "@codemirror/language": "npm:@codemirror/language@^6.0.0",
-        "@codemirror/state": "npm:@codemirror/state@^6.0.0",
-        "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
-        "@codemirror/view": "npm:@codemirror/view@^6.0.0",
-        "dompurify": "npm:dompurify@^3.0.0",
-        "fhir-beacon": "npm:fhir-beacon@0.3.0/dist/fhir-beacon.js",
-        "lit": "npm:lit@3.3.1",
-        "lume/": "https://deno.land/x/lume@v3.2.4/",
-        "prismjs": "npm:prismjs@^1.29.0",
-        "prismjs/": "npm:/prismjs@^1.29.0/",
-        "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@v1.0.0/"
-        
-    },
-    "lock": false,
-    "tasks": {
-        "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
-        "build": "deno task lume",
-        "serve": "deno task lume -s",
-        "cms": "deno task lume cms",
-        "update-deps": "deno run -A 'https://deno.land/x/nudd@v0.2.10/cli.ts' update deno.json plugins.ts"
-    },
-    "compilerOptions": {
-        "types": [
-            "lume/types.ts"
-        ],
-        "jsx": "react-jsx",
-        "jsxImportSource": "lume",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
-    "unstable": [
-        "temporal",
-        "fmt-component"
+  "imports": {
+    "@awesome.me/webawesome": "npm:@awesome.me/webawesome@^3.1.0",
+    "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.15.3/",
+    "lume/jsx-runtime": "https://deno.land/x/ssx@v0.1.12/jsx-runtime.ts",
+    "@codemirror/commands": "npm:@codemirror/commands@^6.0.0",
+    "@codemirror/lang-html": "npm:@codemirror/lang-html@^6.0.0",
+    "@codemirror/lang-javascript": "npm:@codemirror/lang-javascript@^6.0.0",
+    "@codemirror/lang-json": "npm:@codemirror/lang-json@^6.0.0",
+    "@codemirror/language": "npm:@codemirror/language@^6.0.0",
+    "@codemirror/state": "npm:@codemirror/state@^6.0.0",
+    "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
+    "@codemirror/view": "npm:@codemirror/view@^6.0.0",
+    "dompurify": "npm:dompurify@^3.0.0",
+    "fhir-beacon": "npm:fhir-beacon@0.3.0/dist/fhir-beacon.js",
+    "lit": "npm:lit@3.3.1",
+    "lume/": "https://deno.land/x/lume@v3.2.4/",
+    "prismjs": "npm:prismjs@^1.29.0",
+    "prismjs/": "npm:/prismjs@^1.29.0/",
+    "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@v1.1.1/"
+  },
+  "lock": false,
+  "tasks": {
+    "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
+    "build": "deno task lume",
+    "build:drafts": "LUME_DRAFTS=true deno task lume",
+    "verify": "deno run -A scripts/verify_site.ts",
+    "verify:drafts": "LUME_DRAFTS=true deno run -A scripts/verify_site.ts",
+    "check": "deno task build && deno task verify",
+    "check:drafts": "deno task build:drafts && deno task verify:drafts",
+    "serve": "deno task lume -s",
+    "serve:drafts": "LUME_DRAFTS=true deno task lume -s",
+    "cms": "deno task lume cms",
+    "update-deps": "deno run -A 'https://deno.land/x/nudd@v0.2.10/cli.ts' update deno.json plugins.ts"
+  },
+  "compilerOptions": {
+    "types": [
+      "lume/types.ts"
     ],
-    "lint": {
-        "plugins": [
-            "https://deno.land/x/lume@v3.1.4/lint.ts"
-        ]
-    },
-    "nodeModulesDir": "none"
+    "jsx": "react-jsx",
+    "jsxImportSource": "lume",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "unstable": [
+    "temporal",
+    "fmt-component"
+  ],
+  "lint": {
+    "plugins": [
+      "https://deno.land/x/lume@v3.1.4/lint.ts"
+    ]
+  },
+  "nodeModulesDir": "none",
+  "deploy": {
+    "org": "zenwork",
+    "app": "fhir-beacon-web"
+  }
 }
+

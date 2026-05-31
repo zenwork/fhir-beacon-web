@@ -1,11 +1,20 @@
 ---
 layout: layouts/base.vto
-id: Customization
+title: Customize
+order: 2
 ---
 
-# Customization
+# Customize
 
-Although you get a lot out of the box there are many things that can be controlled
+Customization is for frontend developers who want to adapt how FHIR Beacon looks
+and renders.
 
-1. Themeing
-2. Customize Output
+The customization model has levels. Start with CSS. Replace presentation
+primitives when styling is not enough. Override type and resource rendering when
+the FHIR-specific output needs to change.
+
+## Chapters
+
+- [Themes and CSS](./themes-and-css/)
+- [Presentation Primitives](./presentation-primitives/)
+- [Type and Resource Rendering](./type-and-resource-rendering/)
