@@ -61,3 +61,8 @@ The Phase 1 release setup is tracked in
 [`docs/phase-1-release.md`](docs/phase-1-release.md). CI runs both public and
 draft documentation checks, while Release Please manages docs-site releases from
 conventional commits.
+
+Release Please must be allowed to open release pull requests. Either enable the
+repository setting that allows GitHub Actions to create pull requests, or set a
+`RELEASE_PLEASE_TOKEN` repository secret with contents and pull request write
+access.
