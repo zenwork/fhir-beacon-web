@@ -18,6 +18,16 @@ The docs release version is separate from the `fhir-beacon` library package
 version. The rendered docs should continue to state which library version they
 target.
 
+The release workflow needs permission to create pull requests. There are two
+supported configurations:
+
+- Enable **Settings > Actions > General > Workflow permissions > Allow GitHub
+  Actions to create and approve pull requests** for this repository or
+  organization.
+- Or update the workflow to use a `RELEASE_PLEASE_TOKEN` repository secret from a
+  fine-grained PAT that can write contents and pull requests for this
+  repository.
+
 ## Verification
 
 Every pull request should pass:
@@ -56,6 +66,8 @@ documentation structure.
       draft builds.
 - [x] CI workflow runs public and draft verification.
 - [x] Docs release workflow exists.
+- [x] Release Please PR creation permission is enabled, either by repository
+      setting or `RELEASE_PLEASE_TOKEN`.
 - [x] Deno Deploy workflow exists for same-repository pull request previews and
       Release Please production releases.
 - [x] Review design/styling decisions in this repo and define which should move
@@ -124,6 +136,7 @@ deno deploy create \
 
 - [x] Final Deno Deploy organization name: `zenwork`.
 - [x] Final docs app name: `fhir-beacon-web`.
+- [x] Release Please PR creation permission is enabled in GitHub.
 - [ ] Deno Deploy token and repository variables are available in GitHub.
 - [ ] Production docs URL is confirmed after the app exists.
 - [x] Preview deployment behavior for pull requests is defined in
