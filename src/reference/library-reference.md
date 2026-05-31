@@ -28,12 +28,12 @@ generated component metadata, Storybook, and the library changelog.
 | Changelog | [`packages/library/CHANGELOG.md`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/CHANGELOG.md) |
 | Release notes | [GitHub releases](https://github.com/zenwork/fhir-beacon/releases) |
 
-## Common Attributes
+## Common Element Inputs
 
 Common FHIR Beacon elements share a set of rendering inputs. The exact API
 reference will expand as the generated reference is added.
 
-| Attribute     | Purpose                                               |
+| Input         | Purpose                                               |
 |---------------|-------------------------------------------------------|
 | `data`        | FHIR JSON data to render.                             |
 | `key`         | Identity of the element in the FHIR model.            |
@@ -46,42 +46,68 @@ reference will expand as the generated reference is added.
 
 ### Examples
 
-Plain HTML attributes:
-
-<code-example language="html">
-  &lt;fhir-patient
-    data="{...}"
-    mode="narative"
-    headless
-    &gt;&lt;/fhir-patient&gt;
-</code-example>
-
 With Lit:
 
 <code-example language="typescript">
-  import { html } from "lit";
-  function render(patientData) {
-    return html`&lt;fhir-patient 
-                    .data=${patientData}
-                    label="Patient Details"
-                    summaryonly
-                &gt;&lt;/fhir-patient&gt;`;
-  }
+import "fhir-beacon";
+import { html } from "lit";
+import type { PatientData } from "fhir-beacon";
+
+export function renderPatient(patient: PatientData) {
+  return html`
+    &lt;fhir-patient
+      .data=${patient}
+      summaryonly
+    &gt;&lt;/fhir-patient&gt;
+  `;
+}
 </code-example>
 
-With React*:
+With React 19 JSX:
 
 <code-example language="tsx">
-  import "fhir-beacon";
-  export function PatientCard({ patientData }) {
-    return &lt;fhir-patient 
-                data={patientData} 
-                mode="structure" 
-                open 
-            /&gt;;
-  }
+import "fhir-beacon";
+import type { PatientData } from "fhir-beacon";
+
+type PatientCardProps = {
+  patient: PatientData;
+};
+
+export function PatientCard({ patient }: PatientCardProps) {
+  return (
+    &lt;fhir-patient
+      data={patient}
+      mode="structure"
+      open
+    &gt;&lt;/fhir-patient&gt;
+  );
+}
 </code-example>
-*React 19 is required for first-class web component support in JSX.
+
+With plain custom elements:
+
+<code-example language="html">
+&lt;fhir-patient id="patient" mode="narrative"&gt;&lt;/fhir-patient&gt;
+
+&lt;script type="module"&gt;
+  import "fhir-beacon";
+
+  const patient = {
+    resourceType: "Patient",
+    name: [
+      {
+        given: ["Alex"],
+        family: "Rivera",
+      },
+    ],
+  };
+
+  const patientElement = document.querySelector("#patient");
+  patientElement.data = patient;
+&lt;/script&gt;
+</code-example>
+
+React 19 is required for first-class web component support in JSX.
 
 ## Links
 
