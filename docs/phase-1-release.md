@@ -2,6 +2,10 @@
 
 This document records the Phase 1 release setup for the FHIR Beacon docs site.
 
+Status: repo-side Phase 1 work is complete. The remaining release execution
+step is creating/confirming the Deno Deploy app and production URL with deploy
+credentials.
+
 ## Release Versioning
 
 The docs site has its own release version tracked in `version.txt`.
@@ -54,13 +58,26 @@ documentation structure.
 - [x] Docs release workflow exists.
 - [x] Deno Deploy workflow exists for same-repository pull request previews and
       Release Please production releases.
-- [ ] Review design/styling decisions in this repo and define which should move
+- [x] Review design/styling decisions in this repo and define which should move
       into `theme-webawesome`.
-- [ ] Deno Deploy docs app is created and connected to the repository.
-- [ ] Production docs URL is confirmed.
+- [x] Deno Deploy docs app target is configured in repo metadata and workflows.
+- [ ] Deno Deploy docs app is created/confirmed with deploy credentials.
+- [ ] Production docs URL is confirmed after deploy app creation.
 - [x] Storybook deployment target is explicitly deferred until after Phase 1.
 - [x] Showcase deployment target is explicitly deferred until after Phase 1.
 - [x] Library release notes and changelog import path is defined.
+
+## Design and Theme Review
+
+The Phase 1 docs repo keeps only site-specific design choices:
+
+- brand and radius token overrides in `src/styles/webawesome-theme.css`
+- the FHIR Beacon logo asset
+- the FHIR Beacon component/runtime integration in `src/components/site-components.ts`
+
+Reusable component work remains outside this release. The `demo-pane` cleanup is
+tracked as a paused post-Phase 1 follow-up in the project build plan and should
+land in `theme-webawesome`, not in this docs release.
 
 ## Library Status Sources
 
@@ -107,6 +124,7 @@ deno deploy create \
 
 - [x] Final Deno Deploy organization name: `zenwork`.
 - [x] Final docs app name: `fhir-beacon-web`.
+- [ ] Deno Deploy token and repository variables are available in GitHub.
 - [ ] Production docs URL is confirmed after the app exists.
 - [x] Preview deployment behavior for pull requests is defined in
       `.github/workflows/deploy.yml`.
