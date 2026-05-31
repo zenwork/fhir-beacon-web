@@ -25,8 +25,7 @@ order: 1
     <h2>Render a Resource</h2>
     <p>
       FHIR Beacon does not require Lit. The library provides custom elements,
-      and Lit is only used in some examples as a compact way to show property
-      binding.
+      and Lit is used here because it shows property binding clearly.
     </p>
     <p>Render a resource with the matching FHIR Beacon element:</p>
     <!-- deno-fmt-ignore -->
@@ -36,7 +35,7 @@ import type { PatientData } from "fhir-beacon";
 
 export function renderPatient(patient: PatientData) {
   return html`
-    &lt;fhir-patient .data="${patient}"&gt;&lt;/fhir-patient&gt;
+    &lt;fhir-patient .data=${patient}&gt;&lt;/fhir-patient&gt;
   `;
 }
     </code-example>
@@ -56,7 +55,8 @@ export function renderPatient(patient: PatientData) {
 &lt;script type="module"&gt;
   import "fhir-beacon";
 
-  document.querySelector("#patient").data = patient;
+  const patientElement = document.querySelector("#patient");
+  patientElement.data = patient;
 &lt;/script&gt;
     </code-example>
   </section>
@@ -81,8 +81,8 @@ export function renderPatient(patient: PatientData) {
         rendering model.
       </li>
       <li>
-        <a href="../project-status/">Check project status</a> to see what is
-        available today.
+        <a href="../examples/">Read focused examples</a> for Patient and
+        Observation rendering.
       </li>
       <li>
         <a href="../../reference/">Use Reference</a> when you need current

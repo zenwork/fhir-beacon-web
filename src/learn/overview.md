@@ -6,37 +6,38 @@ order: 0
 
 # Overview
 
-FHIR Beacon is a UI library for rendering FHIR data directly in the browser.
+FHIR Beacon is a frontend library for rendering FHIR R5 data directly in the
+browser.
 
-Read this page if you are deciding whether FHIR Beacon belongs in your frontend
-architecture.
+Use it when your application already has FHIR-shaped JSON and needs a faithful
+browser UI for those resources.
 
-## The Architectural Idea
+## Core Idea
 
-Most FHIR frontends map resources into app-specific view models before anything
-is rendered. FHIR Beacon makes a different path practical:
+Most FHIR frontends convert resources into app-specific view models before
+rendering. FHIR Beacon keeps the FHIR shape visible:
 
-- keep FHIR-shaped data visible to the UI layer
-- pass a resource to the matching web component
-- let FHIR-aware components render common structures
+- pass a Patient resource to `<fhir-patient>`
+- pass an Observation resource to `<fhir-observation>`
+- let FHIR-aware components render known resource and datatype structures
 
-The point is not to remove application-specific screens. The point is to avoid
-rewriting common FHIR display rules in every product.
+The goal is not to replace product screens. The goal is to avoid rebuilding the
+same FHIR display logic in every frontend.
 
-## When It Helps
+## Where It Fits
 
-FHIR Beacon is useful when a screen needs to show FHIR data faithfully:
+FHIR Beacon fits screens that need to show FHIR data as FHIR:
 
 - record summaries
 - admin and support views
 - search results
 - inspection and review screens
-- product areas that need broad FHIR coverage
+- broad FHIR data browsers
 
-Use custom view models where a workflow really needs one. Use FHIR Beacon where
-the FHIR shape is already the right model to render.
+Use custom view models when a workflow needs product-specific behavior. Use
+FHIR Beacon when the FHIR resource is already the right thing to render.
 
-## What It Does Not Replace
+## Application Boundary
 
 FHIR Beacon is not an application framework. Your app still owns:
 
@@ -47,13 +48,12 @@ FHIR Beacon is not an application framework. Your app still owns:
 - workflow logic
 - product-specific behavior
 
-FHIR Beacon starts after your frontend has a resource it is allowed to render.
+FHIR Beacon starts when your frontend has FHIR data it is allowed to display.
 
 ## Where To Go Next
 
 - Use [Getting Started](../getting-started/) to render a first resource.
-- Use [Concepts](../concepts/) to understand the rendering model and
-  customization boundaries.
-- Use [Guides](../guides/) for task-oriented examples.
+- Use [Concepts](../concepts/) for the core vocabulary.
+- Use [Examples](../examples/) for focused usage patterns.
 - Use [Reference](../../reference/) when you need current component and FHIR
   coverage.

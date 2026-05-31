@@ -6,49 +6,58 @@ order: 4
 
 # Concepts
 
-Read this page when you need the basic vocabulary used across the docs.
+The Learn pages use these terms when describing `fhir-beacon`.
 
 ## Rendering Model
 
-FHIR Beacon components receive FHIR-shaped data and render it directly.
+FHIR Beacon renders FHIR-shaped JSON with matching custom elements.
 
-Example: `fhir-patient` receives a Patient resource. Datatype components such as
-`fhir-human-name` or `fhir-identifier` render smaller FHIR structures.
+Examples:
 
-The boundary is simple:
+- `<fhir-patient>` renders Patient resources
+- `<fhir-observation>` renders Observation resources
+- `<fhir-human-name>` and `<fhir-identifier>` render FHIR datatypes
 
-- app code gets the right data
-- FHIR Beacon renders known FHIR structures
-- app code owns the surrounding screen
+Your app chooses the data and the surrounding workflow. FHIR Beacon renders the
+FHIR structures.
 
 ## Display Modes
 
-The same resource may need different density in different screens: compact
-summary, full detail, or inspection view.
+FHIR Beacon elements support display modes for different inspection needs:
 
-Mode support is component-specific and still maturing. Check
-[Reference](../../reference/) when a screen depends on a specific resource or
-datatype.
+- `display` for the default reader view
+- `structure` for a more explicit model-oriented view
+- `narrative` for FHIR narrative content
+- `debug` for inspection
+- `override` for custom rendering paths
+
+Mode support is still maturing. Check [Reference](../../reference/) before
+depending on a mode for a specific resource or datatype.
 
 ## Resource-Aware Components
 
-Resource-aware components know the shape of a resource type.
+Resource components know the FHIR shape they render.
 
-For example, a Patient renderer can handle names, identifiers, gender, birth
-date, and contact details without every app rebuilding that display logic.
+For example, `<fhir-patient>` can render patient identifiers, names, contact
+details, gender, birth date, and other Patient fields without every product
+implementing those display rules again.
 
-## Context And Configuration
+## Common Properties
 
-Some rendering choices need context: density, terminology display, reference
-resolution, or project-specific emphasis.
+Most FHIR Beacon elements share the same integration surface:
 
-Treat those choices as an integration boundary. Keep product rules in the app;
-use FHIR Beacon for reusable FHIR rendering.
+- `data` passes the FHIR JSON to render
+- `mode` selects display, structure, narrative, debug, or override rendering
+- `summaryonly` limits output to FHIR summary fields
+- `showerror` displays validation or rendering errors
+- `verbose` shows fields even when data is missing
+- `open` expands structure sections where supported
+- `headless` hides labels where supported
 
 ## Relationship To Storybook And The Showcase App
 
-- Learn explains the model.
-- Guides show task-oriented usage.
-- Reference shows coverage and status.
-- Storybook shows individual components.
-- The showcase app shows broader exploration.
+- Learn explains the library model.
+- Examples show focused usage patterns.
+- Reference shows current coverage and status.
+- Storybook is the component catalog.
+- The showcase app demonstrates broader integration use cases.

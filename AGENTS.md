@@ -10,6 +10,45 @@ This file defines working rules for coding agents contributing to `fhir-beacon-d
 - Markdown content source under [`src/`](src/).
 - CMS setup in [`_cms.ts`](_cms.ts).
 
+## Documentation Subject
+
+This site is about the `fhir-beacon` library only. Do not make reader-facing
+docs about Lume, Vento, the docs theme, or the implementation details of this
+documentation site unless the user explicitly asks for contributor/development
+documentation.
+
+Use the library repository as the source of truth:
+
+- GitHub: https://github.com/zenwork/fhir-beacon
+- Local sibling checkout: `/Users/flo/dev/zenwork/fhir-beacon`
+
+Current understanding of `fhir-beacon`:
+
+- It is an exploratory frontend library for rendering FHIR R5 data directly in
+  the browser.
+- It provides FHIR-aware web components/custom elements for resources,
+  datatypes, primitives, and special elements.
+- The integration model is to keep FHIR-shaped JSON visible in the frontend and
+  pass it to matching components such as `<fhir-patient>` or
+  `<fhir-observation>`.
+- Applications still own data loading, authorization, persistence,
+  orchestration, navigation, and product-specific workflows.
+- The library owns reusable FHIR rendering behavior, including common resource
+  and datatype presentation.
+- The documented setup is `npm install fhir-beacon`, load the required
+  Shoelace assets, and `import "fhir-beacon"` before rendering components.
+- The library README uses Lit examples for concise property binding, but the
+  components are web components and aim to be framework-agnostic.
+- Common element properties include `data`, `mode`, `summaryonly`, `showerror`,
+  `verbose`, `open`, `headless`, `label`, `key`, `summary`, and `required`.
+- Display modes include `display`, `structure`, `narrative`, `debug`, and
+  `override`.
+- The library is alpha/exploratory. Docs must be explicit about what works
+  today, what is partial or experimental, and what is planned.
+- Storybook is the component catalog. The showcase app demonstrates broader
+  integration use cases. They are product resources, not the subject of the
+  docs themselves.
+
 ## Tech Stack
 
 - **Deno**: runtime, task runner, and module/dependency management via [`deno.json`](deno.json).
@@ -74,6 +113,7 @@ deno task update-deps
 
 ## Git Commits
 
+- Do not create, amend, squash, or push commits unless the user explicitly approves the commit first.
 - Do NOT add "Co-authored-by: Junie" or similar trailers to commit messages unless explicitly requested.
 - Use logical, descriptive commit messages.
 - use conventional commit messages (https://www.conventionalcommits.org/en/v1.0.0/)
