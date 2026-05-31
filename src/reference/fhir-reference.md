@@ -18,6 +18,10 @@ they do not define the scope of the reference list.
 
 FHIR version: `5.0.0`
 
+This Phase 1 matrix is curated manually from the `fhir-beacon` source,
+generated component metadata, Storybook examples, and the library changelog.
+The source links are listed in the [Library Reference](../library-reference/).
+
 ## Status Labels
 
 - <wa-badge variant="success" pill>available</wa-badge>: a dedicated renderer or

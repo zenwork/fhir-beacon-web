@@ -1,4 +1,5 @@
 import lume  from 'lume/mod.ts'
+import checkUrls from 'lume/plugins/check_urls.ts'
 import theme from 'theme/mod.ts'
 
 
@@ -33,6 +34,12 @@ site.use(theme({
   webawesome: {
     customPropertiesCssPath: "/styles/webawesome-theme.css",
   },
+}));
+
+site.use(checkUrls({
+  anchors: true,
+  strict: true,
+  throw: true,
 }));
 
 site.copy("assets", "assets");

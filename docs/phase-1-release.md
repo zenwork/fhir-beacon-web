@@ -21,6 +21,10 @@ Every pull request should pass:
 - [x] `deno task check`
 - [x] `deno task check:drafts`
 
+Both checks build the site and run built-site verification. Lume's
+`check_urls` plugin is enabled in `_config.ts` with strict internal URL and
+anchor validation, and broken links fail the build.
+
 ## Documentation Conventions
 
 - [x] Code snippets in docs use the shared `code-example` component rather than
@@ -44,15 +48,37 @@ documentation structure.
 - [x] Draft documentation build exposes the planned full structure for review.
 - [x] Minimum automated verification exists for required pages and internal
       links.
+- [x] Lume `check_urls` validates internal links and anchors during public and
+      draft builds.
 - [x] CI workflow runs public and draft verification.
 - [x] Docs release workflow exists.
+- [x] Deno Deploy workflow exists for same-repository pull request previews and
+      Release Please production releases.
 - [ ] Review design/styling decisions in this repo and define which should move
       into `theme-webawesome`.
 - [ ] Deno Deploy docs app is created and connected to the repository.
 - [ ] Production docs URL is confirmed.
-- [ ] Storybook deployment target is confirmed or explicitly deferred.
-- [ ] Showcase deployment target is confirmed or explicitly deferred.
-- [ ] Library release notes and changelog import path is defined.
+- [x] Storybook deployment target is explicitly deferred until after Phase 1.
+- [x] Showcase deployment target is explicitly deferred until after Phase 1.
+- [x] Library release notes and changelog import path is defined.
+
+## Library Status Sources
+
+Phase 1 does not import library release metadata automatically yet. The public
+status pages should be checked against these source paths before release:
+
+- package/version target:
+  [`packages/library/package.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/package.json)
+- generated custom element inventory:
+  [`packages/library/custom-elements.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/custom-elements.json)
+- generated IDE/component metadata:
+  [`packages/library/build/web-types.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/build/web-types.json)
+- library changelog:
+  [`packages/library/CHANGELOG.md`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/CHANGELOG.md)
+- release notes:
+  [GitHub releases](https://github.com/zenwork/fhir-beacon/releases)
+
+Automated import of these sources remains part of the parallel technical track.
 
 ## Deno Deploy Setup
 
@@ -64,8 +90,8 @@ and app names are known:
 
 ```bash
 deno deploy create \
-  --org <deno-org> \
-  --app <docs-app-name> \
+  --org zenwork \
+  --app fhir-beacon-web \
   --source github \
   --owner zenwork \
   --repo fhir-beacon-web \
@@ -79,10 +105,20 @@ deno deploy create \
 
 ## Open Deployment Inputs
 
-- [ ] Final Deno Deploy organization name.
-- [ ] Final docs app name and production URL.
-- [ ] Preview deployment behavior for pull requests.
-- [ ] Whether Storybook and showcase must be migrated before the docs preview is
-      public.
-- [ ] Final Storybook URL after migration.
-- [ ] Final showcase app URL after migration.
+- [x] Final Deno Deploy organization name: `zenwork`.
+- [x] Final docs app name: `fhir-beacon-web`.
+- [ ] Production docs URL is confirmed after the app exists.
+- [x] Preview deployment behavior for pull requests is defined in
+      `.github/workflows/deploy.yml`.
+- [x] Storybook migration is not required before the docs preview is public.
+- [x] Showcase migration is not required before the docs preview is public.
+- [ ] Final Storybook URL after post-Phase 1 migration.
+- [ ] Final showcase app URL after post-Phase 1 migration.
+
+## Deferred Until After Phase 1
+
+- Migrate Storybook from classic Deno Deploy to the new Deno Deploy platform.
+- Update docs links if the Storybook URL changes during that migration.
+- Migrate the showcase app from classic Deno Deploy to the new Deno Deploy
+  platform.
+- Update docs links if the showcase URL changes during that migration.
