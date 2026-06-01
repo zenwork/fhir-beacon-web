@@ -28,6 +28,7 @@
     "verify:drafts": "LUME_DRAFTS=true deno run -A scripts/verify_site.ts",
     "check": "deno task build && deno task verify",
     "check:drafts": "deno task build:drafts && deno task verify:drafts",
+    "reference:generate": "deno run -A scripts/generate_library_reference.ts",
     "serve": "LUME_DRAFTS=false deno task lume -s",
     "serve:drafts": "LUME_DRAFTS=true deno task lume -s",
     "cms": "deno task lume cms",

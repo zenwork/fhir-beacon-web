@@ -13,6 +13,17 @@ const requiredPages = [
   "customization/type-and-resource-rendering/index.html",
   "reference/index.html",
   "reference/fhir-reference/index.html",
+  "reference/library-reference/index.html",
+  "reference/base-and-display-elements/index.html",
+  "reference/base-and-display-elements/fhir-value/index.html",
+  "reference/types/index.html",
+  "reference/types/fhir-primitive/index.html",
+  "reference/complex-types/index.html",
+  "reference/complex-types/fhir-address/index.html",
+  "reference/resources/index.html",
+  "reference/resources/fhir-bundle/index.html",
+  "reference/domain-resources/index.html",
+  "reference/domain-resources/fhir-patient/index.html",
   "play/index.html",
 ];
 
@@ -23,6 +34,16 @@ const draftPages = [
   "fhir-data/core/index.html",
   "fhir-data/fhir-igs/index.html",
   "fhir-data/advanced-topics/index.html",
+];
+
+const removedPages = [
+  "reference/component-catalog/index.html",
+  "reference/component-catalog/base-and-display-elements/index.html",
+  "reference/component-catalog/types/index.html",
+  "reference/component-catalog/complex-types/index.html",
+  "reference/component-catalog/resources/index.html",
+  "reference/component-catalog/domain-resources/index.html",
+  "reference/component-catalog/domain-resources/fhir-patient/index.html",
 ];
 
 const includeDrafts = Deno.env.get("LUME_DRAFTS") === "true";
@@ -52,6 +73,12 @@ for (const page of draftPages) {
     errors.push(`Missing draft page in draft build: ${page}`);
   } else if (!includeDrafts && pageExists) {
     errors.push(`Draft page should not be present in public build: ${page}`);
+  }
+}
+
+for (const page of removedPages) {
+  if (await exists(page)) {
+    errors.push(`Removed page should not be present: ${page}`);
   }
 }
 

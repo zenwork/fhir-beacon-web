@@ -74,6 +74,32 @@ Current understanding of `fhir-beacon`:
   - [`deno.json`](deno.json)
   - [`_cms.ts`](_cms.ts)
 
+## Generated Reference Docs
+
+The library reference generator lives at
+[`scripts/generate_library_reference.ts`](scripts/generate_library_reference.ts)
+and runs through `deno task reference:generate`.
+
+It reads the local `fhir-beacon` library package from
+`../fhir-beacon/packages/library/` unless `FHIR_BEACON_LIBRARY_DIR` is set. The
+library package must have current `package.json`, `build/custom-elements.json`,
+`build/web-types.json`, and `CHANGELOG.md` files before generation.
+
+Generated outputs are source docs, but they should be regenerated rather than
+hand-maintained unless the user explicitly asks for manual edits:
+
+- [`src/reference/library-reference.md`](src/reference/library-reference.md)
+- [`src/reference/base-and-display-elements/`](src/reference/base-and-display-elements/)
+- [`src/reference/types/`](src/reference/types/)
+- [`src/reference/complex-types/`](src/reference/complex-types/)
+- [`src/reference/resources/`](src/reference/resources/)
+- [`src/reference/domain-resources/`](src/reference/domain-resources/)
+
+The catalog pages are intentionally direct children of `src/reference/`; do not
+reintroduce a `src/reference/component-catalog/` wrapper. After changing the
+generator, run `deno fmt scripts/generate_library_reference.ts`, then
+`deno task reference:generate`, `deno task build`, and `deno task verify`.
+
 ## What Not To Edit (Unless Explicitly Requested)
 
 - Generated output: [`_site/`](_site/)
