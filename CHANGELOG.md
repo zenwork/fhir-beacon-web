@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/zenwork/fhir-beacon-web/compare/v1.0.0...v1.1.0) (2026-06-01)
+
+
+### Features
+
+* phase 3 fhir data depth ([#8](https://github.com/zenwork/fhir-beacon-web/issues/8)) ([e12105f](https://github.com/zenwork/fhir-beacon-web/commit/e12105f2e5ad1c6e3facd838e88836c53e0bf59a))
+
+
+### Documentation
+
+* phase 2 learn narrative ([#7](https://github.com/zenwork/fhir-beacon-web/issues/7)) ([baad7a1](https://github.com/zenwork/fhir-beacon-web/commit/baad7a131eaf219446867b93f959cc58d02fd8eb))
+
+
+### Continuous Integration
+
+* add manual production deploy trigger ([#6](https://github.com/zenwork/fhir-beacon-web/issues/6)) ([06deccf](https://github.com/zenwork/fhir-beacon-web/commit/06deccfeac423a3189ad2a0bae37f064c694d353))
+* deploy production after release please ([#5](https://github.com/zenwork/fhir-beacon-web/issues/5)) ([2f55e94](https://github.com/zenwork/fhir-beacon-web/commit/2f55e9441e3ed7004a90e9e55c3371bd9f339ef5))
+
 ## 1.0.0 (2026-05-31)
 
 
