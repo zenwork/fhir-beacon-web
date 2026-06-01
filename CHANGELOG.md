@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/zenwork/fhir-beacon-web/compare/v1.1.0...v1.1.1) (2026-06-01)
+
+
+### Documentation
+
+* expand phase 4 customization docs ([#10](https://github.com/zenwork/fhir-beacon-web/issues/10)) ([50d49d3](https://github.com/zenwork/fhir-beacon-web/commit/50d49d3e2d8293e17bbd86b112eb1975624f0e1c))
+
 ## [1.1.0](https://github.com/zenwork/fhir-beacon-web/compare/v1.0.0...v1.1.0) (2026-06-01)
 
 
