@@ -19,13 +19,13 @@ This chapter is for users asking:
 
 ## Current Coverage
 
-| Area                | Status                                                | Notes                                                             |
-| ------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
-| Resource components | <wa-badge variant="warning" pill>partial</wa-badge>   | Dedicated renderers exist for a first resource set.               |
-| Complex datatypes   | <wa-badge variant="success" pill>available</wa-badge> | Common complex datatypes have dedicated renderers.                |
-| Primitive support   | <wa-badge variant="success" pill>available</wa-badge> | Primitive rendering, formatting, and validation exist.            |
+| Area                | Status                                                | Notes                                                                    |
+|---------------------|-------------------------------------------------------|--------------------------------------------------------------------------|
+| Resource components | <wa-badge variant="warning" pill>partial</wa-badge>   | Dedicated renderers exist for a first resource set.                      |
+| Complex datatypes   | <wa-badge variant="success" pill>available</wa-badge> | Common complex datatypes have dedicated renderers.                       |
+| Primitive support   | <wa-badge variant="success" pill>available</wa-badge> | Primitive rendering, formatting, and validation exist.                   |
 | References          | <wa-badge variant="warning" pill>partial</wa-badge>   | Local display and contained references work; provider lookup is planned. |
-| Bundles             | <wa-badge variant="warning" pill>partial</wa-badge>   | Bundle entries render supported resource types.                   |
+| Bundles             | <wa-badge variant="warning" pill>partial</wa-badge>   | Bundle entries render supported resource types.                          |
 
 ## Resources
 

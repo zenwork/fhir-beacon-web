@@ -19,11 +19,11 @@ This chapter is for users asking:
 
 ## Current Coverage
 
-| Area        | Status                                                 | Notes                                                       |
-| ----------- | ------------------------------------------------------ | ----------------------------------------------------------- |
-| Profiles    | <wa-badge variant="brand" pill>experimental</wa-badge> | Profiling builder and validation code exists and is still evolving. |
-| Extensions  | <wa-badge variant="warning" pill>partial</wa-badge>    | Simple and complex extension rendering exists for many `value[x]` types. |
-| Terminology | <wa-badge variant="brand" pill>experimental</wa-badge> | Valueset and codesystem stores, processors, and tests exist. |
+| Area        | Status                                                 | Notes                                                                         |
+|-------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
+| Profiles    | <wa-badge variant="brand" pill>experimental</wa-badge> | Profiling builder and validation code exists and is still evolving.           |
+| Extensions  | <wa-badge variant="warning" pill>partial</wa-badge>    | Simple and complex extension rendering exists for many `value[x]` types.      |
+| Terminology | <wa-badge variant="brand" pill>experimental</wa-badge> | Valueset and codesystem stores, processors, and tests exist.                  |
 | Constraints | <wa-badge variant="brand" pill>experimental</wa-badge> | Constraint metadata can influence validation, but public usage is not stable. |
 
 FHIR IG support is an important part of the v1 direction. It is not yet a full
@@ -35,13 +35,13 @@ plus early profiling, binding, and validation infrastructure.
 Profiles are currently represented by experimental profiling code rather than a
 stable public profile-loading workflow.
 
-| Capability | Status | Notes |
-| ---------- | ------ | ----- |
-| Definition builder | <wa-badge variant="brand" pill>experimental</wa-badge> | Builder APIs exist for defining profile-like structures in code. |
-| Extension builder | <wa-badge variant="brand" pill>experimental</wa-badge> | Extension definitions can be modeled for profile-aware work. |
-| Slicing builder | <wa-badge variant="brand" pill>experimental</wa-badge> | Slice-related builder code exists, but docs and API guarantees are not stable. |
-| Runtime profile loading from IG packages | <wa-badge variant="neutral" pill>planned</wa-badge> | Applications should not assume package-based IG loading is available. |
-| Profile-specific renderer selection | <wa-badge variant="neutral" pill>planned</wa-badge> | Current rendering is primarily resource/type driven, not profile-dispatch driven. |
+| Capability                               | Status                                                 | Notes                                                                             |
+|------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------|
+| Definition builder                       | <wa-badge variant="brand" pill>experimental</wa-badge> | Builder APIs exist for defining profile-like structures in code.                  |
+| Extension builder                        | <wa-badge variant="brand" pill>experimental</wa-badge> | Extension definitions can be modeled for profile-aware work.                      |
+| Slicing builder                          | <wa-badge variant="brand" pill>experimental</wa-badge> | Slice-related builder code exists, but docs and API guarantees are not stable.    |
+| Runtime profile loading from IG packages | <wa-badge variant="neutral" pill>planned</wa-badge>    | Applications should not assume package-based IG loading is available.             |
+| Profile-specific renderer selection      | <wa-badge variant="neutral" pill>planned</wa-badge>    | Current rendering is primarily resource/type driven, not profile-dispatch driven. |
 
 For now, treat profile support as an evolving internal capability. FHIR Beacon
 can render profile-shaped data when the underlying resource and datatype fields
@@ -75,13 +75,13 @@ and has terminology processing utilities under the library source. This supports
 code display, choices, and binding-oriented experiments, but it should not be
 treated as a complete terminology server.
 
-| Capability | Status | Notes |
-| ---------- | ------ | ----- |
-| Local FHIR R5 codesystem data | <wa-badge variant="brand" pill>experimental</wa-badge> | CodeSystem JSON files are present in the library source. |
-| Local FHIR R5 valueset data | <wa-badge variant="brand" pill>experimental</wa-badge> | ValueSet JSON files and expanded valueset files are present. |
-| Valueset processor and resolver tests | <wa-badge variant="brand" pill>experimental</wa-badge> | Tests cover processor, source, fetch, and resolver behavior. |
-| Primitive/code rendering | <wa-badge variant="success" pill>available</wa-badge> | Coding and coded primitive display exists. |
-| Remote terminology operations | <wa-badge variant="neutral" pill>planned</wa-badge> | `$expand`, `$validate-code`, subsumption, and remote terminology workflows are not a stable public feature. |
+| Capability                            | Status                                                 | Notes                                                                                                       |
+|---------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| Local FHIR R5 codesystem data         | <wa-badge variant="brand" pill>experimental</wa-badge> | CodeSystem JSON files are present in the library source.                                                    |
+| Local FHIR R5 valueset data           | <wa-badge variant="brand" pill>experimental</wa-badge> | ValueSet JSON files and expanded valueset files are present.                                                |
+| Valueset processor and resolver tests | <wa-badge variant="brand" pill>experimental</wa-badge> | Tests cover processor, source, fetch, and resolver behavior.                                                |
+| Primitive/code rendering              | <wa-badge variant="success" pill>available</wa-badge>  | Coding and coded primitive display exists.                                                                  |
+| Remote terminology operations         | <wa-badge variant="neutral" pill>planned</wa-badge>    | `$expand`, `$validate-code`, subsumption, and remote terminology workflows are not a stable public feature. |
 
 Applications that need authoritative terminology services should still integrate
 with their own terminology infrastructure. FHIR Beacon can present coded data
