@@ -1,4 +1,4 @@
-name: Deploy
+name: Preview Deploy
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: deno-deploy-production
+  group: deno-deploy-preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
@@ -29,25 +29,70 @@ jobs:
         run: deno task check
 
       - name: Deploy preview revision
+        id: deploy
         env:
           DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
           DENO_DEPLOY_ORG: ${{ vars.DENO_DEPLOY_ORG }}
           DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
         run: |
-          deno deploy \
-            --token "$DENO_DEPLOY_TOKEN" \
-            --org "$DENO_DEPLOY_ORG" \
-            --app "$DENO_DEPLOY_APP" | tee deploy-preview.log
+          set +e
+          : "${DENO_DEPLOY_TOKEN:?DENO_DEPLOY_TOKEN is required}"
+          : "${DENO_DEPLOY_ORG:?DENO_DEPLOY_ORG is required}"
+          : "${DENO_DEPLOY_APP:?DENO_DEPLOY_APP is required}"
+
+          deploy_status=1
+          for attempt in 1 2 3; do
+            echo "Deploy preview attempt ${attempt}/3" | tee -a deploy-preview.log
+            deno deploy \
+              --token "$DENO_DEPLOY_TOKEN" \
+              --org "$DENO_DEPLOY_ORG" \
+              --app "$DENO_DEPLOY_APP" 2>&1 | tee -a deploy-preview.log
+            deploy_status="${PIPESTATUS[0]}"
+
+            if [ "$deploy_status" -eq 0 ]; then
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              sleep "$((attempt * 15))"
+            fi
+          done
+
+          exit "$deploy_status"
 
       - name: Publish preview summary
-        env:
-          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
+        if: always()
         run: |
+          touch deploy-preview.log
+          clean_log="$(sed -E 's/\x1b\[[0-9;]*[mK]//g' deploy-preview.log)"
+          preview_urls="$(printf '%s\n' "$clean_log" | grep -Eo 'https://[^[:space:])>]+' | sed 's/[.,;:]*$//' | sort -u || true)"
+          trace_ids="$(printf '%s\n' "$clean_log" | grep -Eio 'trace id: [[:alnum:]]+' | sort -u || true)"
+
           {
             echo "## Deno Deploy Preview"
             echo
-            echo "- Default app URL: https://$DENO_DEPLOY_APP.deno.dev"
+            echo "- Pull request: #${{ github.event.pull_request.number }}"
+            echo "- Commit: \`${{ github.event.pull_request.head.sha }}\`"
+            echo "- Deploy status: ${{ steps.deploy.outcome }}"
             echo
-            echo "### Deploy output links"
-            grep -Eo 'https://[^ ]+' deploy-preview.log | sort -u | sed 's/^/- /' || echo "- (no URLs detected in deploy output)"
+            if [ -n "$preview_urls" ]; then
+              echo "### Preview links"
+              printf '%s\n' "$preview_urls" | sed 's/^/- /'
+            else
+              echo "No preview URLs were detected in the deploy output."
+            fi
+            if [ -n "$trace_ids" ]; then
+              echo
+              echo "### Deno Deploy trace ids"
+              printf '%s\n' "$trace_ids" | sed 's/^/- /'
+            fi
+            if [ "${{ steps.deploy.outcome }}" != "success" ]; then
+              echo
+              echo "### Deploy log tail"
+              echo '```text'
+              printf '%s\n' "$clean_log" | tail -40
+              echo '```'
+            fi
+            echo
+            echo "_This workflow deploys PR preview revisions only. Production deploys run from \`release-please.yml\`._"
           } >> "$GITHUB_STEP_SUMMARY"
