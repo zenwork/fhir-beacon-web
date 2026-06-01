@@ -30,6 +30,7 @@ jobs:
 
       - name: Deploy preview revision
         id: deploy
+        shell: bash
         env:
           DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
           DENO_DEPLOY_ORG: ${{ vars.DENO_DEPLOY_ORG }}
@@ -62,10 +63,22 @@ jobs:
 
       - name: Publish preview summary
         if: always()
+        shell: bash
+        env:
+          DENO_DEPLOY_APP: ${{ vars.DENO_DEPLOY_APP }}
         run: |
           touch deploy-preview.log
           clean_log="$(sed -E 's/\x1b\[[0-9;]*[mK]//g' deploy-preview.log)"
-          preview_urls="$(printf '%s\n' "$clean_log" | grep -Eo 'https://[^[:space:])>]+' | sed 's/[.,;:]*$//' | sort -u || true)"
+          preview_urls="$(printf '%s\n' "$clean_log" | awk '
+            tolower($0) ~ /^preview url:/ {
+              capture_next = 1
+              next
+            }
+            capture_next && match($0, /https:\/\/[^[:space:]]+/) {
+              print substr($0, RSTART, RLENGTH)
+              capture_next = 0
+            }
+          ' | sed -E 's#[),.;:]+$##; s#/$##' | sort -u || true)"
           trace_ids="$(printf '%s\n' "$clean_log" | grep -Eio 'trace id: [[:alnum:]]+' | sort -u || true)"
 
           {
@@ -76,10 +89,10 @@ jobs:
             echo "- Deploy status: ${{ steps.deploy.outcome }}"
             echo
             if [ -n "$preview_urls" ]; then
-              echo "### Preview links"
+              echo "### Preview URL"
               printf '%s\n' "$preview_urls" | sed 's/^/- /'
             else
-              echo "No preview URLs were detected in the deploy output."
+              echo "No Deno Deploy preview URL was detected after the \`Preview url:\` line."
             fi
             if [ -n "$trace_ids" ]; then
               echo
