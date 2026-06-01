@@ -28,7 +28,7 @@
     "verify:drafts": "LUME_DRAFTS=true deno run -A scripts/verify_site.ts",
     "check": "deno task build && deno task verify",
     "check:drafts": "deno task build:drafts && deno task verify:drafts",
-    "serve": "deno task lume -s",
+    "serve": "LUME_DRAFTS=false deno task lume -s",
     "serve:drafts": "LUME_DRAFTS=true deno task lume -s",
     "cms": "deno task lume cms",
     "update-deps": "deno run -A 'https://deno.land/x/nudd@v0.2.10/cli.ts' update deno.json plugins.ts"
@@ -57,4 +57,3 @@
     "app": "fhir-beacon-web"
   }
 }
-

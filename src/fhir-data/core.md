@@ -2,6 +2,7 @@
 layout: layouts/base.vto
 title: Core
 order: 0
+draft: true
 ---
 
 # Core

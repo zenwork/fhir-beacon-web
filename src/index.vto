@@ -1,5 +1,5 @@
 ---
-layout: layouts/base.vto
+layout: layouts/full-width.vto
 title: FHIR Beacon
 order: 0
 ---
@@ -12,6 +12,8 @@ order: 0
     align-items: center;
     min-block-size: min(44rem, calc(100dvh - var(--site-header-scroll-offset, 72px) - 4rem));
     padding-block: clamp(3rem, 8vw, 7rem);
+    margin-left: clamp(1rem, 4rem, 6rem);
+    margin-right: clamp(1rem, 4rem, 6rem);
   }
 
   .home-copy {
@@ -62,6 +64,8 @@ order: 0
     --wa-color-border-loud: var(--home-cta-fill);
     --wa-color-on-normal: white;
     --wa-color-on-quiet: var(--home-cta-outline-text);
+    width: clamp(5rem, 12vw, 10rem);
+    font-size: clamp(0.65rem, 1.2vw, 1rem);
   }
 
   .wa-dark .home-actions wa-button {
@@ -106,6 +110,8 @@ order: 0
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     padding-block-end: 3rem;
+    margin-left: clamp(1rem, 4rem, 6rem);
+    margin-right: clamp(1rem, 4rem, 6rem);
   }
 
   .home-proof-item {
@@ -156,10 +162,10 @@ order: 0
 
 <section class="home-hero" aria-labelledby="home-heading">
   <div class="home-copy">
-    <p class="home-kicker">
-      <img src="/assets/images/logo.png" alt="" aria-hidden="true">
-      FHIR Beacon
-    </p>
+<!--    <p class="home-kicker">-->
+<!--      <img src="/assets/images/logo.png" alt="" aria-hidden="true">-->
+<!--      FHIR Beacon-->
+<!--    </p>-->
     <h1 id="home-heading">Display FHIR Data Now!</h1>
     <p class="home-lead">
       Render FHIR data no matter the framework or language. Pass
@@ -179,7 +185,7 @@ order: 0
         variant="brand"
         appearance="outlined"
         size="large"
-      >View Reference</wa-button>
+      >Reference</wa-button>
     </div>
   </div>
 

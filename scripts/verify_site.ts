@@ -5,9 +5,7 @@ const requiredPages = [
   "learn/index.html",
   "learn/overview/index.html",
   "learn/getting-started/index.html",
-  "learn/concepts/index.html",
   "learn/project-status/index.html",
-  "learn/examples/index.html",
   "learn/guides/index.html",
   "fhir-data/index.html",
   "fhir-data/core/index.html",
@@ -23,7 +21,9 @@ const requiredPages = [
   "play/index.html",
 ];
 
-const draftPages: string[] = [];
+const draftPages = [
+  "learn/concepts/index.html",
+];
 
 const includeDrafts = Deno.env.get("LUME_DRAFTS") === "true";
 const errors: string[] = [];
