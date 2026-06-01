@@ -7,12 +7,41 @@ Documentation site for [`fhir-beacon`](https://github.com/zenwork/fhir-beacon).
 ```bash
 deno task serve
 deno task serve:drafts
+deno task reference:generate
 deno task check
 deno task check:drafts
 ```
 
 `deno task check` verifies the public build. `deno task check:drafts` builds
 with Lume draft pages enabled so the full planned structure can be reviewed.
+
+## Library Reference Generator
+
+Run `deno task reference:generate` after updating the local `fhir-beacon`
+library checkout or after a new library release. The generator reads package and
+component metadata from the sibling checkout at
+`../fhir-beacon/packages/library/` by default.
+
+Use `FHIR_BEACON_LIBRARY_DIR` when the library checkout is somewhere else:
+
+```bash
+FHIR_BEACON_LIBRARY_DIR=/path/to/fhir-beacon/packages/library \
+  deno task reference:generate
+```
+
+The generator expects these source files in the library package:
+
+- `package.json`
+- `build/custom-elements.json`
+- `build/web-types.json`
+- `CHANGELOG.md`
+
+It writes the generated library lookup page to
+`src/reference/library-reference.md` and writes per-catalog component pages
+under `src/reference/base-and-display-elements/`, `src/reference/types/`,
+`src/reference/complex-types/`, `src/reference/resources/`, and
+`src/reference/domain-resources/`. Review the generated diff before committing,
+then run `deno task build` or `deno task check`.
 
 ## Deno Deploy
 
