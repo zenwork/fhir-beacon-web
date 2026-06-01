@@ -1,0 +1,109 @@
+---
+layout: layouts/base.vto
+title: Examples
+draft: true
+order: 3
+---
+
+<section class="docs-stack">
+  <header>
+    <h1>{{ title }}</h1>
+    <p>
+      Focused examples for rendering FHIR resources with FHIR Beacon.
+    </p>
+  </header>
+
+  <section class="docs-section">
+    <h2>Patient and Observation Summary</h2>
+    <p>
+      This mirrors the library's documented usage: pass typed FHIR data to the
+      matching web components and let the app decide the surrounding layout.
+    </p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import "fhir-beacon";
+import { html } from "lit";
+import type {
+  DisplayConfig,
+  ObservationData,
+  PatientData,
+} from "fhir-beacon";
+
+type ClinicalSummary = {
+  data: {
+    patient: PatientData;
+    observation: ObservationData;
+  };
+  config: Pick&lt;DisplayConfig, "summaryonly" | "showerror"&gt;;
+};
+
+export function renderClinicalSummary(
+  { data, config }: ClinicalSummary,
+) {
+  return html`
+    &lt;section aria-labelledby="summary-heading"&gt;
+      &lt;h2 id="summary-heading"&gt;Clinical summary&lt;/h2&gt;
+
+      &lt;fhir-patient
+        .data=${data.patient}
+        ?summaryonly=${config.summaryonly}
+      &gt;&lt;/fhir-patient&gt;
+
+      &lt;hr /&gt;
+
+      &lt;fhir-observation
+        .data=${data.observation}
+        ?showerror=${config.showerror}
+      &gt;&lt;/fhir-observation&gt;
+    &lt;/section&gt;
+  `;
+}
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Structure View</h2>
+    <p>
+      Use structure mode when a screen is meant for inspection rather than a
+      compact reader view.
+    </p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import { html } from "lit";
+import { DisplayMode } from "fhir-beacon";
+import type { ObservationData } from "fhir-beacon";
+
+export function renderObservationStructure(
+  observation: ObservationData,
+) {
+  return html`
+    &lt;fhir-observation
+      .data=${observation}
+      .mode=${DisplayMode.structure}
+      verbose
+      open
+      showerror
+    &gt;&lt;/fhir-observation&gt;
+  `;
+}
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h2>Component Catalog</h2>
+    <p>
+      Use Storybook when you need focused examples for individual resource,
+      datatype, primitive, and special elements.
+    </p>
+    <p><a href="https://fhir-beacon.deno.dev">Open Storybook</a></p>
+  </section>
+
+  <section class="docs-section">
+    <h2>Showcase App</h2>
+    <p>
+      Use the showcase app when you want to explore broader integration flows
+      with real FHIR Beacon components.
+    </p>
+    <p><a href="https://fhir-beacon-app.deno.dev">Open showcase app</a></p>
+  </section>
+</section>

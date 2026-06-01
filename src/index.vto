@@ -1,0 +1,228 @@
+---
+layout: layouts/full-width.vto
+title: FHIR Beacon
+order: 0
+---
+
+<style>
+  .home-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    min-block-size: min(44rem, calc(100dvh - var(--site-header-scroll-offset, 72px) - 4rem));
+    padding-block: clamp(3rem, 8vw, 7rem);
+    margin-left: clamp(1rem, 4rem, 6rem);
+    margin-right: clamp(1rem, 4rem, 6rem);
+  }
+
+  .home-copy {
+    max-width: 42rem;
+  }
+
+  .home-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+    color: var(--wa-color-brand-text-loud);
+    font-weight: 700;
+  }
+
+  .home-kicker img {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+
+  .home-copy h1 {
+    max-width: 10ch;
+    margin: 0;
+    font-size: clamp(2.25rem, 7vw, 4.75rem);
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .home-lead {
+    max-width: 34rem;
+    margin: 1.5rem 0 0;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: 2rem;
+  }
+
+  .home-actions wa-button {
+    --home-cta-fill: oklch(0.42 0.105 155);
+    --home-cta-outline-text: oklch(0.34 0.1 155);
+    --wa-color-fill-normal: var(--home-cta-fill);
+    --wa-color-fill-quiet: color-mix(in srgb, var(--home-cta-fill) 9%, transparent);
+    --wa-color-border-loud: var(--home-cta-fill);
+    --wa-color-on-normal: white;
+    --wa-color-on-quiet: var(--home-cta-outline-text);
+    width: clamp(5rem, 12vw, 10rem);
+    font-size: clamp(0.65rem, 1.2vw, 1rem);
+  }
+
+  .wa-dark .home-actions wa-button {
+    --home-cta-fill: oklch(0.46 0.115 155);
+    --home-cta-outline-text: oklch(0.86 0.13 153);
+    --wa-color-fill-quiet: color-mix(in srgb, var(--home-cta-outline-text) 14%, transparent);
+    --wa-color-border-loud: var(--home-cta-outline-text);
+  }
+
+  .home-code {
+    min-width: 0;
+  }
+
+  .home-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-block-size: 2.5rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+    border-block-end: 0;
+    border-radius: var(--wa-border-radius-l, 0.45rem) var(--wa-border-radius-l, 0.45rem) 0 0;
+    background: color-mix(in srgb, var(--wa-color-neutral-fill-quiet, #f5f5f5) 92%, var(--wa-color-brand-fill-normal));
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .home-code-meta {
+    color: color-mix(in srgb, currentColor 62%, transparent);
+    font-weight: 600;
+  }
+
+  .home-code code-example {
+    display: block;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+
+  .home-proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding-block-end: 3rem;
+    margin-left: clamp(1rem, 4rem, 6rem);
+    margin-right: clamp(1rem, 4rem, 6rem);
+  }
+
+  .home-proof-item {
+    display: block;
+    padding-block: 1rem;
+    border-block-start: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .home-proof-item:hover,
+  .home-proof-item:focus-visible {
+    border-block-start-color: var(--wa-color-brand-fill-normal);
+  }
+
+  .home-proof-item:focus-visible {
+    outline: 2px solid var(--wa-color-brand-fill-normal);
+    outline-offset: 0.35rem;
+  }
+
+  .home-proof-item strong {
+    display: block;
+    margin-block-end: 0.35rem;
+  }
+
+  .home-proof-item p {
+    margin: 0;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+  }
+
+  @media (max-width: 52rem) {
+    .home-hero {
+      grid-template-columns: 1fr;
+      min-block-size: auto;
+      padding-block: 2.5rem;
+    }
+
+    .home-copy h1 {
+      max-width: 11ch;
+      font-size: clamp(3rem, 16vw, 4.75rem);
+    }
+
+    .home-proof {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="home-hero" aria-labelledby="home-heading">
+  <div class="home-copy">
+<!--    <p class="home-kicker">-->
+<!--      <img src="/assets/images/logo.png" alt="" aria-hidden="true">-->
+<!--      FHIR Beacon-->
+<!--    </p>-->
+    <h1 id="home-heading">Display FHIR Data Now!</h1>
+    <p class="home-lead">
+      Render FHIR data no matter the framework or language. Pass
+      raw data to HTML elements. Supports extensions
+      and profiles out of the box. Modify the look and feel to match
+      your requirements.
+    </p>
+    <div class="home-actions" aria-label="Primary links">
+      <wa-button
+        href="/learn/getting-started/"
+        variant="brand"
+        appearance="filled"
+        size="large"
+      >Get Started</wa-button>
+      <wa-button
+        href="/reference/"
+        variant="brand"
+        appearance="outlined"
+        size="large"
+      >Reference</wa-button>
+    </div>
+  </div>
+
+  <div class="home-code">
+    <div class="home-code-header">
+      <span>Render a Patient</span>
+      <span class="home-code-meta">TypeScript</span>
+    </div>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+      import "fhir-beacon";
+      import { html } from "lit";
+      import type { PatientData } from "fhir-beacon";
+
+      export function PatientSummary(patient: PatientData) {
+        return html`
+          &lt;fhir-patient
+            .data=${patient}
+            summaryonly
+          &gt;&lt;/fhir-patient&gt;
+        `;
+      }
+    </code-example>
+  </div>
+</section>
+
+<section class="home-proof" aria-label="FHIR Beacon at a glance">
+  <a class="home-proof-item" href="/learn/overview/#core-idea">
+    <strong>FHIR-shaped input</strong>
+    <p>Use Patient, Observation, Medication, and other resources without first flattening them into view models.</p>
+  </a>
+  <a class="home-proof-item" href="/learn/getting-started/#use-plain-custom-elements">
+    <strong>Web components</strong>
+    <p>Render with custom elements that fit Lit, plain HTML, and framework-based frontends.</p>
+  </a>
+  <a class="home-proof-item" href="/reference/fhir-reference/#status-labels">
+    <strong>Visible status</strong>
+    <p>Check what works today, what is partial, and what is still planned before adopting it.</p>
+  </a>
+</section>

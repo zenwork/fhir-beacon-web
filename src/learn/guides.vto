@@ -1,0 +1,173 @@
+---
+layout: layouts/base.vto
+title: Guides
+order: 5
+---
+
+<section class="docs-stack">
+  <header>
+    <h1>{{ title }}</h1>
+    <p>
+      Short task walkthroughs for using FHIR Beacon with real FHIR-shaped data.
+    </p>
+  </header>
+
+  <section class="docs-section">
+    <h2>Render a Patient</h2>
+    <p>
+      Use the Patient component when your app already has a FHIR Patient
+      resource and needs to display it directly.
+    </p>
+  </section>
+
+  <section class="docs-section">
+    <h3>Register the elements</h3>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import "fhir-beacon";
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h3>Keep the data FHIR-shaped</h3>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import type { PatientData } from "fhir-beacon";
+
+const patient: PatientData = {
+  resourceType: "Patient",
+  id: "example",
+  identifier: [
+    {
+      system: "https://example.org/mrn",
+      value: "MRN-10001",
+    },
+  ],
+  name: [
+    {
+      use: "official",
+      given: ["Alex"],
+      family: "Rivera",
+    },
+  ],
+  gender: "unknown",
+  birthDate: "1970-01-01",
+};
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h3>Bind it to the component</h3>
+    <p>
+      Lit is used here because the property binding is explicit. The important
+      part is that the Patient JSON is assigned to the component's
+      <code>data</code> property.
+    </p>
+    <p>With Lit:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+import { html } from "lit";
+import type { PatientData } from "fhir-beacon";
+
+export function renderPatient(patient: PatientData) {
+  return html`
+    &lt;fhir-patient
+      .data=${patient}
+    &gt;&lt;/fhir-patient&gt;
+  `;
+}
+    </code-example>
+    <p>With React 19 JSX:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="tsx">
+import "fhir-beacon";
+import type { PatientData } from "fhir-beacon";
+
+type PatientViewProps = {
+  patient: PatientData;
+};
+
+export function PatientView({ patient }: PatientViewProps) {
+  return (
+    &lt;fhir-patient
+      data={patient}
+    &gt;&lt;/fhir-patient&gt;
+  );
+}
+    </code-example>
+    <p>With static HTML:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="html">
+&lt;fhir-patient
+  data='{
+    "resourceType": "Patient",
+    "id": "example",
+    "name": [
+      {
+        "use": "official",
+        "given": ["Alex"],
+        "family": "Rivera"
+      }
+    ],
+    "gender": "unknown",
+    "birthDate": "1970-01-01"
+  }'
+&gt;&lt;/fhir-patient&gt;
+    </code-example>
+    <p>With plain custom elements and dynamic data:</p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="html">
+&lt;fhir-patient id="patient"&gt;&lt;/fhir-patient&gt;
+
+&lt;script type="module"&gt;
+  import "fhir-beacon";
+
+  const patient = {
+    resourceType: "Patient",
+    id: "example",
+    name: [
+      {
+        use: "official",
+        given: ["Alex"],
+        family: "Rivera",
+      },
+    ],
+    gender: "unknown",
+    birthDate: "1970-01-01",
+  };
+
+  const patientElement = document.querySelector("#patient");
+  patientElement.data = patient;
+&lt;/script&gt;
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h3>Choose display flags deliberately</h3>
+    <p>
+      Common flags let the same resource support different inspection views.
+    </p>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript">
+export function renderPatientStructure(patient: PatientData) {
+  return html`
+    &lt;fhir-patient
+      .data=${patient}
+      mode="structure"
+      verbose
+      open
+      showerror
+    &gt;&lt;/fhir-patient&gt;
+  `;
+}
+    </code-example>
+  </section>
+
+  <section class="docs-section">
+    <h3>Boundary</h3>
+    <p>
+      Your app loads, filters, authorizes, and chooses the Patient. FHIR Beacon
+      renders the Patient and its nested FHIR datatypes.
+    </p>
+  </section>
+</section>

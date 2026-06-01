@@ -6,24 +6,23 @@ const requiredPages = [
   "learn/overview/index.html",
   "learn/getting-started/index.html",
   "learn/project-status/index.html",
-  "learn/examples/index.html",
-  "fhir-data/index.html",
-  "fhir-data/core/index.html",
-  "fhir-data/fhir-igs/index.html",
-  "fhir-data/advanced-topics/index.html",
+  "learn/guides/index.html",
   "customization/index.html",
   "customization/themes-and-css/index.html",
   "customization/presentation-primitives/index.html",
   "customization/type-and-resource-rendering/index.html",
   "reference/index.html",
   "reference/fhir-reference/index.html",
-  "reference/library-reference/index.html",
   "play/index.html",
 ];
 
 const draftPages = [
   "learn/concepts/index.html",
-  "learn/guides/index.html",
+  "learn/examples/index.html",
+  "fhir-data/index.html",
+  "fhir-data/core/index.html",
+  "fhir-data/fhir-igs/index.html",
+  "fhir-data/advanced-topics/index.html",
 ];
 
 const includeDrafts = Deno.env.get("LUME_DRAFTS") === "true";

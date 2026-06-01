@@ -20,7 +20,7 @@ FHIR version: `5.0.0`
 
 This Phase 1 matrix is curated manually from the `fhir-beacon` source,
 generated component metadata, Storybook examples, and the library changelog.
-The source links are listed in the [Library Reference](../library-reference/).
+The source links are listed in the [Reference](../).
 
 ## Status Labels
 
