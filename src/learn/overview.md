@@ -53,6 +53,6 @@ FHIR Beacon starts when your frontend has FHIR data it is allowed to display.
 ## Where To Go Next
 
 - Use [Getting Started](../getting-started/) to render a first resource.
-- Use [Examples](../examples/) for focused usage patterns.
+- Use [Guides](../guides/) for practical usage patterns.
 - Use [Reference](../../reference/) when you need current component and FHIR
   coverage.

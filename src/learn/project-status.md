@@ -60,8 +60,8 @@ from these sources:
 | [Storybook](https://fhir-beacon.deno.dev) | component examples and visible rendering coverage |
 
 The [FHIR Reference](../../reference/fhir-reference/) is the main coverage
-matrix for Phase 1. The [Library Reference](../../reference/library-reference/)
-records the package target and common public element inputs.
+matrix for Phase 1. The [Reference](../../reference/) section records the
+package target and common public element inputs.
 
 ## Links
 
