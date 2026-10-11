@@ -31,13 +31,13 @@ specification. Library component coverage is generated from package metadata,
 custom elements metadata, web-types metadata, Storybook, and the library
 changelog.
 
-| Source | Link |
-|--------|------|
-| Package metadata | [`packages/library/package.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/package.json) |
+| Source                   | Link                                                                                                                   |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------|
+| Package metadata         | [`packages/library/package.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/package.json)      |
 | Custom elements manifest | [`custom-elements.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/build/custom-elements.json) |
-| Web types metadata | [`web-types.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/build/web-types.json) |
-| Changelog | [`packages/library/CHANGELOG.md`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/CHANGELOG.md) |
-| Release notes | [GitHub releases](https://github.com/zenwork/fhir-beacon/releases) |
+| Web types metadata       | [`web-types.json`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/build/web-types.json)             |
+| Changelog                | [`packages/library/CHANGELOG.md`](https://github.com/zenwork/fhir-beacon/blob/main/packages/library/CHANGELOG.md)      |
+| Release notes            | [GitHub releases](https://github.com/zenwork/fhir-beacon/releases)                                                     |
 
 Regenerate the library lookup page after each fhir-beacon release:
 `deno task reference:generate`.
