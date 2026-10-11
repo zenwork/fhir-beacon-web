@@ -122,7 +122,10 @@ Run commands from repository root:
 deno task serve   # local preview server
 deno task build   # production build
 deno lint         # optional lint check
+npm run test:homepage  # Vitest integration tests for the homepage examples
 ```
+
+Run `npm run test:homepage` when changing the homepage React, Lit, or static HTML examples, and before handing off those changes.
 
 If you modify config, navigation, or shared data files, run at least `deno task build` before finishing.
 

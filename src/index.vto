@@ -191,7 +191,7 @@ order: 0
 
   <div class="home-code">
     <div class="home-code-header">
-      <span>Use it with React</span>
+      <span>Use it with React 19+</span>
       <span class="home-code-meta">TypeScript</span>
     </div>
     <!-- deno-fmt-ignore -->
@@ -199,10 +199,8 @@ order: 0
       import "fhir-beacon";
       import type { PatientData } from "fhir-beacon";
 
-      export function PatientSummary(patient: PatientData) {
-        return (
-          <fhir-patient data={patient} summaryonly={true} ></fhir-patient>
-        )
+      export function PatientSummary({ patient }: { patient: PatientData }) {
+        return <fhir-patient data={patient} summaryonly></fhir-patient>;
       }
     </code-example>
     <hr>
@@ -217,12 +215,7 @@ order: 0
       import type { PatientData } from "fhir-beacon";
 
       export function PatientSummary(patient: PatientData) {
-        return html`
-          <fhir-patient
-            .data=${patient}
-            summaryonly
-          ></fhir-patient>
-        `;
+        return html`<fhir-patient .data=${patient} summaryonly ></fhir-patient> `;
       }
     </code-example>
     <hr>
