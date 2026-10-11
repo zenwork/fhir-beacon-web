@@ -1,15 +1,15 @@
 ---
 layout: layouts/base.vto
 title: FHIR Reference
-order: 0
+order: 1
 ---
 
 # FHIR Specification Coverage
 
-The FHIR Beacon library is designed to closely map the FHIR specification. It 
+The FHIR Beacon library is designed to closely map the FHIR specification. It
 aligns with the published FHIR.
 
-* [data types](https://hl7.org/fhir/datatypes.html) 
+* [data types](https://hl7.org/fhir/datatypes.html)
 * [resource list](https://hl7.org/fhir/resourcelist.html).
 
 FHIR Beacon components map semantically to the official FHIR surface. Status
@@ -18,9 +18,9 @@ they do not define the scope of the reference list.
 
 FHIR version: `5.0.0`
 
-This Phase 1 matrix is curated manually from the `fhir-beacon` source,
-generated component metadata, Storybook examples, and the library changelog.
-The source links are listed in the [Reference](../).
+This coverage reference is curated from the `fhir-beacon` source, generated
+component metadata, Storybook examples, and the library changelog. The source
+links are listed in the [Reference](../).
 
 ## Status Labels
 
@@ -34,6 +34,67 @@ The source links are listed in the [Reference](../).
   includes the item, but there is no dedicated renderer yet.
 - <wa-badge variant="danger" pill>internal</wa-badge>: used internally by the
   library, but not currently part of the public API.
+
+## Reference Categories
+
+| Category | Where to look | Current source |
+| -------- | ------------- | -------------- |
+| Resource types | [Resource Base Types](#resource-base-types), [Resources](#resources), [Domain Resources](#domain-resources) | Generated resource definitions and renderer components. |
+| Data types | [Primitive Types](#primitive-types), [Complex Type Bases](#complex-type-bases), [Complex Types](#complex-types) | Generated datatype definitions and renderer components. |
+| Terminologies | [Terminologies](#terminologies) | Packaged code-system JSON, `Codes`, `useSystem`, and value-set data shapes. |
+| Artifacts | [Artifacts](#artifacts) | Generated resource definitions and profiling helpers. |
+| Profiles | [Profiles](#profiles) | Profiling DSL, StructureDefinition builders, and validation helpers. |
+| Extensions | [Extensions](#extensions) | `fhir-extension`, `FhirExtensionData`, OpenType handling, and primitive extension support. |
+
+## Terminologies
+
+FHIR Beacon includes packaged code-system choices and value-set/code-system data
+shapes. It is not a terminology server and does not currently perform remote
+expansion, subsumption, or mapping operations.
+
+| Surface | Status | Current support | FHIR |
+| ------- | ------ | --------------- | ---- |
+| Packaged code systems | <wa-badge variant="success" pill>available</wa-badge> | Code-system JSON files are bundled and exposed through `Codes`, `useSystem`, and `systemChoices`. | [CodeSystem](https://hl7.org/fhir/codesystem.html) |
+| Codeable values | <wa-badge variant="success" pill>available</wa-badge> | `Coding`, `CodeableConcept`, `CodeableReference`, and primitive `code` renderers exist. | [Terminologies](https://hl7.org/fhir/terminologies.html) |
+| ValueSet data shape | <wa-badge variant="warning" pill>partial</wa-badge> | ValueSet TypeScript data definitions exist; expansion and lookup behavior are not public UI features yet. | [ValueSet](https://hl7.org/fhir/valueset.html) |
+| ConceptMap behavior | <wa-badge variant="neutral" pill>planned</wa-badge> | `ConceptMap` is listed as a planned resource; there is no dedicated renderer or mapping engine yet. | [ConceptMap](https://hl7.org/fhir/conceptmap.html) |
+| Terminology service capabilities | <wa-badge variant="neutral" pill>planned</wa-badge> | `TerminologyCapabilities` is listed as a planned resource; no terminology service integration is documented. | [TerminologyCapabilities](https://hl7.org/fhir/terminologycapabilities.html) |
+
+## Artifacts
+
+FHIR conformance and knowledge artifacts are represented in the generated FHIR
+model, but only selected artifact workflows have current library behavior.
+
+| Artifact surface | Status | Current support | FHIR |
+| ---------------- | ------ | --------------- | ---- |
+| StructureDefinition-like profiles | <wa-badge variant="warning" pill>partial</wa-badge> | The profiling DSL builds StructureDefinition-style definitions and constraints for library validation. | [StructureDefinition](https://hl7.org/fhir/structuredefinition.html) |
+| Capability and implementation artifacts | <wa-badge variant="neutral" pill>planned</wa-badge> | `CapabilityStatement`, `ImplementationGuide`, `SearchParameter`, and related resources are listed in the resource matrix but do not have dedicated renderers yet. | [Conformance](https://hl7.org/fhir/conformance-module.html) |
+| Clinical knowledge artifacts | <wa-badge variant="neutral" pill>planned</wa-badge> | `ActivityDefinition`, `PlanDefinition`, `Measure`, `Library`, and related resources are listed as planned resources. | [Clinical Reasoning](https://hl7.org/fhir/clinicalreasoning-module.html) |
+| Test artifacts | <wa-badge variant="neutral" pill>planned</wa-badge> | `TestPlan`, `TestReport`, and `TestScript` are listed as planned resources. | [Testing](https://hl7.org/fhir/testing.html) |
+
+## Profiles
+
+Profiles are currently a developer-facing validation and definition feature, not
+a full published profile registry.
+
+| Profile capability | Status | Current support |
+| ------------------ | ------ | --------------- |
+| Profile construction | <wa-badge variant="warning" pill>partial</wa-badge> | `profile`, builder helpers, definition builders, slices, and extension builders exist for creating StructureDefinition-style definitions. |
+| Constraint validation | <wa-badge variant="warning" pill>partial</wa-badge> | Profile validation support exists in the library and tests; public docs are still evolving. |
+| Profile-aware rendering | <wa-badge variant="warning" pill>partial</wa-badge> | Components carry profile/constraint metadata in structure views where available, but profile-specific renderer selection is not stable public API. |
+| IG package loading | <wa-badge variant="neutral" pill>planned</wa-badge> | Loading external IG packages and applying their profiles is not documented as a stable feature. |
+
+## Extensions
+
+Extension rendering is one of the more complete advanced FHIR data paths.
+
+| Extension capability | Status | Current support | FHIR |
+| -------------------- | ------ | --------------- | ---- |
+| Simple extensions | <wa-badge variant="success" pill>available</wa-badge> | `fhir-extension` renders `url` and a single `value[x]` using primitive or datatype renderers. | [Extensibility](https://hl7.org/fhir/extensibility.html) |
+| Complex extensions | <wa-badge variant="success" pill>available</wa-badge> | Nested `extension` arrays are detected and rendered as complex extensions. | [Complex extensions](https://hl7.org/fhir/extensibility.html#complex) |
+| OpenType value coverage | <wa-badge variant="success" pill>available</wa-badge> | The renderer maps many `value[x]` OpenType values to matching FHIR Beacon renderers or readable primitive output. | [Extensibility](https://hl7.org/fhir/extensibility.html) |
+| Primitive extensions | <wa-badge variant="warning" pill>partial</wa-badge> | Primitive extension support exists, including array fixes noted in the changelog; docs still need deeper examples. | [Primitive extensions](https://hl7.org/fhir/extensibility.html#primitives) |
+| Extension authoring in profiles | <wa-badge variant="warning" pill>partial</wa-badge> | Profiling builders include extension-oriented helpers, but the public authoring workflow is still evolving. | [Defining extensions](https://hl7.org/fhir/defining-extensions.html) |
 
 ## Primitive Types
 

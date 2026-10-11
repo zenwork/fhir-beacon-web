@@ -191,23 +191,51 @@ order: 0
 
   <div class="home-code">
     <div class="home-code-header">
-      <span>Render a Patient</span>
+      <span>Use it with React 19+</span>
       <span class="home-code-meta">TypeScript</span>
     </div>
     <!-- deno-fmt-ignore -->
-    <code-example language="typescript">
+    <code-example language="jsx" padded>
+      import "fhir-beacon";
+      import type { PatientData } from "fhir-beacon";
+
+      export function PatientSummary({ patient }: { patient: PatientData }) {
+        return <fhir-patient data={patient} summaryonly></fhir-patient>;
+      }
+    </code-example>
+    <hr>
+    <div class="home-code-header">
+      <span>Use it with Lit</span>
+      <span class="home-code-meta">TypeScript</span>
+    </div>
+    <!-- deno-fmt-ignore -->
+    <code-example language="typescript" padded>
       import "fhir-beacon";
       import { html } from "lit";
       import type { PatientData } from "fhir-beacon";
 
       export function PatientSummary(patient: PatientData) {
-        return html`
-          &lt;fhir-patient
-            .data=${patient}
-            summaryonly
-          &gt;&lt;/fhir-patient&gt;
-        `;
+        return html`<fhir-patient .data=${patient} summaryonly ></fhir-patient> `;
       }
+    </code-example>
+    <hr>
+    <div class="home-code-header">
+      <span>Use it in static HTML</span>
+      <span class="home-code-meta">HTML</span>
+    </div>
+    <!-- deno-fmt-ignore -->
+    <code-example language="html" padded>
+      <fhir-patient id="123" summaryonly ></fhir-patient>
+
+      <script type="module">
+        import "fhir-beacon";
+
+        fetch("https://health.org/patient/123")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("123").data = data;
+          })
+      </script>
     </code-example>
   </div>
 </section>
@@ -219,10 +247,10 @@ order: 0
   </a>
   <a class="home-proof-item" href="/learn/getting-started/#use-plain-custom-elements">
     <strong>Web components</strong>
-    <p>Render with custom elements that fit Lit, plain HTML, and framework-based frontends.</p>
+    <p>Render with custom elements that fit React, Angular, Lit, plain HTML, and most other frameworks.</p>
   </a>
   <a class="home-proof-item" href="/reference/fhir-reference/#status-labels">
-    <strong>Visible status</strong>
+    <strong>WIP</strong>
     <p>Check what works today, what is partial, and what is still planned before adopting it.</p>
   </a>
 </section>

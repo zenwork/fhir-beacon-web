@@ -1,5 +1,5 @@
 // deno-lint-ignore-file
-import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/v1.1.1/src/components/index.ts'
+import 'https://raw.githubusercontent.com/zenwork/theme-webawesome/a7747a4752fb66218c7fdb20bae7bd85d1e737c3/src/components/index.ts'
 import 'https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.7.0/dist-cdn/components/badge/badge.js'
 import DOMPurify       from 'dompurify'
 import * as fhirBeacon from 'fhir-beacon'

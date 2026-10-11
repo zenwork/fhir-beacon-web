@@ -7,6 +7,7 @@
     "@codemirror/lang-html": "npm:@codemirror/lang-html@^6.0.0",
     "@codemirror/lang-javascript": "npm:@codemirror/lang-javascript@^6.0.0",
     "@codemirror/lang-json": "npm:@codemirror/lang-json@^6.0.0",
+    "@codemirror/lang-css": "npm:@codemirror/lang-css@^6.0.0",
     "@codemirror/language": "npm:@codemirror/language@^6.0.0",
     "@codemirror/state": "npm:@codemirror/state@^6.0.0",
     "@codemirror/theme-one-dark": "npm:@codemirror/theme-one-dark@^6.0.0",
@@ -17,7 +18,7 @@
     "lume/": "https://deno.land/x/lume@v3.2.4/",
     "prismjs": "npm:prismjs@^1.29.0",
     "prismjs/": "npm:/prismjs@^1.29.0/",
-    "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@v1.1.1/"
+    "theme/": "https://cdn.jsdelivr.net/gh/zenwork/theme-webawesome@a7747a4752fb66218c7fdb20bae7bd85d1e737c3/"
   },
   "lock": false,
   "tasks": {
@@ -28,6 +29,7 @@
     "verify:drafts": "LUME_DRAFTS=true deno run -A scripts/verify_site.ts",
     "check": "deno task build && deno task verify",
     "check:drafts": "deno task build:drafts && deno task verify:drafts",
+    "reference:generate": "deno run -A scripts/generate_library_reference.ts",
     "serve": "LUME_DRAFTS=false deno task lume -s",
     "serve:drafts": "LUME_DRAFTS=true deno task lume -s",
     "cms": "deno task lume cms",
