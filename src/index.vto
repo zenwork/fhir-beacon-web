@@ -235,10 +235,12 @@ order: 0
       <fhir-patient id="123" summaryonly ></fhir-patient>
 
       <script type="module">
+        import "fhir-beacon";
+
         fetch("https://health.org/patient/123")
           .then((response) => response.json())
           .then((data) => {
-            document.querySelector("123").data = data;
+            document.getElementById("123").data = data;
           })
       </script>
     </code-example>
